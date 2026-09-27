@@ -1,0 +1,432 @@
+export type Locale = "en" | "mr";
+
+export const locales: Locale[] = ["en", "mr"];
+
+export const siteInfo = {
+  phone1: "8956550539",
+  phone2: "02382-314045",
+  email: "ssdpclatur@gmail.com",
+  address: "Plot No. 10 & 11, Vishal Nagar East, Near Kashivishweshwar Mandir, Latur - 413512",
+  bank: {
+    name: "Ujjivan Small Finance Bank",
+    account: "4493110110055389",
+    ifsc: "UJVN0004493",
+    upi: "UPAY74071857457@Ujjivan",
+  },
+  org: "Kai Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha",
+  regNo: "Latur/0000179/2026",
+};
+
+export const dictionary = {
+  en: {
+    meta: {
+      siteName: "S.S. De-Addiction & Palliative Care Centre, Latur",
+      tagline: "A de-addicted society is our dream",
+    },
+    nav: {
+      home: "Home",
+      about: "About Centre",
+      services: "Services",
+      admission: "Admission Process",
+      rules: "Rules & Regulations",
+      gallery: "Gallery",
+      donation: "Donation",
+      contact: "Contact",
+      callNow: "Call Now",
+      donateNow: "Donate Now",
+    },
+    home: {
+      heroEyebrow: "Bargale Hospital · Kai. Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha",
+      heroTitle: "S.S. De-Addiction & Palliative Care Centre, Latur",
+      heroSubtitle: "Professional de-addiction treatment and compassionate palliative care, in the heart of Latur.",
+      heroTagline: "\u201cव्यसनमुक्त समाज हेच आमचे स्वप्न\u201d — A de-addicted society is our dream.",
+      trustBadge1: "10-bed hospital + 48-bed centre",
+      trustBadge2: "Registered public trust · Reg. No. Latur/0000179/2026",
+      trustBadge3: "80G & 12A · CSR Registered",
+      facilitiesTitle: "Why families choose us",
+      facilitiesSubtitle: "A calm, secure, fully-equipped facility built for real recovery — not just treatment.",
+      palliativeTitle: "Palliative Care, explained simply",
+      palliativeIntro:
+        "Palliative care brings relief from pain, stress and other symptoms of serious illness, while supporting the whole family — emotionally and practically — through the hardest chapters of life.",
+      palliativeCards: [
+        {
+          title: "Our purpose",
+          body: "Not to cure the illness, but to ease the journey — helping people live with as much comfort and dignity as possible.",
+        },
+        {
+          title: "What patients receive",
+          body: "Relief from physical pain, help with breathing, better sleep, and steady mental and social support.",
+        },
+        {
+          title: "Who it is for",
+          body: "Patients with cancer, heart disease, kidney illness, paralysis, coma, or other serious long-term conditions.",
+        },
+        {
+          title: "Our focus",
+          body: "Caring for the whole person — physical, mental, emotional and spiritual needs — to improve quality of life.",
+        },
+      ],
+      ctaTitle: "Ready to take the first step?",
+      ctaBody: "Whether it's for yourself or someone you love, our team is here to guide you — with care, not judgement.",
+      ctaButton: "Speak to our team",
+    },
+    facilities: [
+      { title: "Well-constructed building", desc: "A purpose-built, calm space designed for recovery." },
+      { title: "Central location", desc: "Easy to reach from anywhere in Latur." },
+      { title: "Effective treatment", desc: "Structured, medically-guided treatment protocols." },
+      { title: "Proper guidance", desc: "Step-by-step direction for patients and families alike." },
+      { title: "Counselling", desc: "One-on-one and family counselling throughout the stay." },
+      { title: "Psychiatric consultation", desc: "Regular consultation with psychiatric specialists." },
+      { title: "Nutritious food", desc: "Home-style, balanced meals every day." },
+      { title: "Clean drinking water", desc: "Safe, clean water available at all times." },
+      { title: "Yoga & Pranayama", desc: "Daily yoga and breathing practice for body and mind." },
+      { title: "Library", desc: "A quiet reading space to support recovery of the mind." },
+      { title: "Healthy environment", desc: "A clean, sympathetic, family-like atmosphere." },
+      { title: "CCTV monitoring", desc: "The entire building is under CCTV supervision." },
+      { title: "Fire safety", desc: "Fire alarm and fire-safety systems in place." },
+    ],
+    about: {
+      title: "About the Centre",
+      subtitle: "Born from personal loss, built for the community.",
+      storyTitle: "Our story",
+      storyParas: [
+        "Kai. Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha, Latur was founded in loving memory of Late Ashwini, wife of Dr. Anand Bargale, who passed away in September 2021 after a prolonged illness and three years in a coma.",
+        "During her illness, the family experienced first-hand how difficult and expensive it is to arrange proper nursing and palliative care at home — and realised that most families cannot afford this level of care on their own.",
+        "Keeping this realisation in mind, the organisation was founded in her name, with the goal of bringing relief to poor and needy patients and their families through palliative care and de-addiction treatment.",
+      ],
+      visionTitle: "Our vision",
+      visionBody:
+        "A healthy, self-reliant society where the underprivileged are brought into the mainstream through education, health and social upliftment — and where every district has access to compassionate palliative care.",
+      orgTitle: "The organisation",
+      orgBody:
+        "Kai. Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha is a registered public charitable trust (Reg. No. Latur/0000179/2026) working across healthcare, social and educational sectors in and around Latur.",
+      capacityTitle: "Our facility today",
+      capacityItems: [
+        { label: "Hospital beds", value: "10" },
+        { label: "De-addiction & Palliative beds", value: "48" },
+        { label: "Location", value: "Vishal Nagar, Latur" },
+      ],
+      boardTitle: "Management Board",
+      boardMembers: [
+        { role: "President", name: "Mrs. Madhavi Anand Bargale" },
+        { role: "Vice President", name: "Mr. Shekhar M. Kore" },
+        { role: "Secretary", name: "Dr. Anand N. Bargale" },
+        { role: "Treasurer", name: "Mrs. Pushpa N. Bargale" },
+        { role: "Joint Secretary", name: "Mr. Hemant Lohare" },
+        { role: "Member", name: "Dr. Sankalp S. Bargale" },
+        { role: "Member", name: "Mr. Balu Kamble" },
+      ],
+    },
+    servicesPage: {
+      title: "Our Services",
+      subtitle: "Two dedicated wings, working together — de-addiction and palliative care — under one roof.",
+      deaddictionTitle: "De-Addiction Treatment",
+      deaddictionItems: [
+        { title: "Alcohol addiction", desc: "Structured detox and recovery programme for alcohol dependence." },
+        { title: "Drug addiction", desc: "Medical detoxification and rehabilitation for substance dependence." },
+        { title: "Counselling", desc: "Individual and group counselling to rebuild motivation and habits." },
+        { title: "Psychiatric support", desc: "Ongoing psychiatric care for co-occurring mental health needs." },
+        { title: "Family therapy", desc: "Helping families heal and support recovery together." },
+        { title: "Yoga", desc: "Guided daily yoga sessions to restore physical strength." },
+        { title: "Meditation", desc: "Meditation practice for calm, focus and emotional balance." },
+      ],
+      palliativeTitle: "Palliative Care",
+      palliativeItems: [
+        { title: "Palliative care", desc: "Pain management and comfort care for serious, long-term illness." },
+        { title: "Home care support", desc: "Guidance and support extended to the patient's own home." },
+      ],
+    },
+    admission: {
+      title: "Admission Process",
+      subtitle: "A clear, family-friendly path from first call to the start of treatment.",
+      steps: [
+        { title: "Relative requests admission", desc: "A family member reaches out to us to begin the process." },
+        { title: "Patient counselling", desc: "Our counsellors speak with the patient to understand their situation." },
+        { title: "Pickup service, if needed", desc: "We can arrange safe pickup when the patient is unable to travel." },
+        { title: "Admission form", desc: "Basic details are recorded on the admission form." },
+        { title: "Consent signatures", desc: "The patient and family sign the required consent forms." },
+        { title: "Deposit belongings", desc: "Valuables and personal items are safely deposited and recorded." },
+        { title: "Start treatment", desc: "Treatment begins under medical and counselling supervision." },
+      ],
+    },
+    rules: {
+      title: "Rules & Regulations",
+      subtitle: "Clear guidelines that keep the centre calm, safe and effective for every patient.",
+      items: [
+        { title: "Visiting hours", desc: "Relatives may visit the office between 10:00 AM and 5:00 PM." },
+        { title: "Discharge hours", desc: "Patient discharge takes place between 10:00 AM and 5:00 PM." },
+        { title: "No late discharge", desc: "No discharge is given after 3:00 AM under any circumstance." },
+        { title: "Authorised discharge", desc: "The patient is discharged only to the relative who signed at admission." },
+        { title: "One visitor at a time", desc: "Only one relative may enter the office at any given time." },
+        { title: "No intoxication on visits", desc: "Relatives must not visit the centre under the influence of any substance." },
+        { title: "Night entry restricted", desc: "No outside visitors are allowed at the centre after 6:00 PM." },
+        { title: "Planned discharge only", desc: "Discharge is not done without prior notice or after 5:30 PM." },
+        { title: "Legal compliance", desc: "Violation of rules may lead to action under healthcare protection law." },
+        { title: "Initial call restriction", desc: "Patients cannot take calls or meet visitors for the first 21 days." },
+      ],
+    },
+    donation: {
+      title: "Support Our Mission",
+      subtitle: "Your contribution gives dignity, treatment and hope to those who cannot afford it themselves.",
+      quote:
+        "\u201cTo save a home from ruin, and to bring two moments of smiles to the faces of patients battling serious illness...\u201d",
+      scanTitle: "Scan & Donate",
+      scanBody: "Use any UPI app — Google Pay, PhonePe, Paytm or BHIM — to scan and donate instantly.",
+      bankDetailsTitle: "Bank Transfer Details",
+      bankName: "Bank Name",
+      accountName: "Account Name",
+      accountNumber: "Account Number",
+      ifsc: "IFSC Code",
+      upiId: "UPI ID",
+      thankYouTitle: "Thank you",
+      thankYouBody:
+        "Every donation, big or small, directly funds free and subsidised treatment for underprivileged patients. All donors receive an official receipt.",
+      regTitle: "Registration & Tax Details",
+      trustReg: "Trust Reg. No.",
+      darpanId: "NGO Darpan ID",
+      csrReg: "CSR Reg. No.",
+      taxReg: "80G & 12A Reg. No.",
+    },
+    contact: {
+      title: "Contact Us",
+      subtitle: "We're here to answer your questions — day or night.",
+      phoneTitle: "Phone",
+      emailTitle: "Email",
+      addressTitle: "Address",
+      formTitle: "Send us a message",
+      formName: "Your name",
+      formPhone: "Phone number",
+      formMessage: "Message",
+      formSubmit: "Send message",
+      mapTitle: "Find us on the map",
+    },
+    gallery: {
+      title: "Gallery",
+      subtitle: "A glimpse into our centre, our facilities and our work.",
+    },
+    footer: {
+      about:
+        "S.S. De-Addiction & Palliative Care Centre, Latur is run by Kai. Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha — dedicated to healthcare and social service in Marathwada.",
+      quickLinks: "Quick Links",
+      getInTouch: "Get in Touch",
+      rights: "All rights reserved.",
+    },
+    notFound: {
+      title: "Page not found",
+      body: "The page you're looking for doesn't exist or has moved.",
+      cta: "Back to home",
+    },
+    loading: "Loading...",
+  },
+  mr: {
+    meta: {
+      siteName: "एस.एस. व्यसनमुक्ती आणि उपशामक उपचार केंद्र, लातूर",
+      tagline: "व्यसनमुक्त समाज हेच आमचे स्वप्न",
+    },
+    nav: {
+      home: "मुख्यपृष्ठ",
+      about: "केंद्राविषयी",
+      services: "सेवा",
+      admission: "प्रवेश प्रक्रिया",
+      rules: "नियम व अटी",
+      gallery: "छायाचित्रे",
+      donation: "देणगी",
+      contact: "संपर्क",
+      callNow: "कॉल करा",
+      donateNow: "देणगी द्या",
+    },
+    home: {
+      heroEyebrow: "बरगाले हॉस्पिटल · कै. अश्विनी आनंद बरगाले बहुउद्देशीय सेवाभावी संस्था",
+      heroTitle: "एस.एस. व्यसनमुक्ती आणि उपशामक उपचार केंद्र, लातूर",
+      heroSubtitle: "लातूर शहराच्या मध्यवर्ती भागात, व्यावसायिक व्यसनमुक्ती उपचार आणि सहानुभूतीपूर्ण उपशामक काळजी.",
+      heroTagline: "\u201cव्यसनमुक्त समाज हेच आमचे स्वप्न\u201d",
+      trustBadge1: "१० खाटांचे रुग्णालय + ४८ खाटांचे केंद्र",
+      trustBadge2: "नोंदणीकृत सार्वजनिक विश्वस्त संस्था · नोंदणी क्र. Latur/0000179/2026",
+      trustBadge3: "80G व 12A प्रमाणित · CSR नोंदणीकृत",
+      facilitiesTitle: "कुटुंबे आमची निवड का करतात",
+      facilitiesSubtitle: "केवळ उपचार नव्हे, तर खऱ्या पुनर्वसनासाठी उभारलेली शांत, सुरक्षित व सुसज्ज सुविधा.",
+      palliativeTitle: "पॅलिएटिव्ह केअर म्हणजे काय",
+      palliativeIntro:
+        "पॅलिएटिव्ह म्हणजेच उपशामक काळजी — गंभीर आजारांनी त्रस्त असलेल्या रुग्णांना वेदना, ताण व इतर लक्षणांपासून आराम देऊन, त्यांच्या व त्यांच्या कुटुंबाला भावनिक व मानसिक आधार देणारी सेवा.",
+      palliativeCards: [
+        {
+          title: "आमचा उद्देश",
+          body: "आजार बरा करणे हा नसून, रुग्णाला आजाराच्या काळात शक्य तितका आराम व सन्मानाने जगण्याची संधी देणे.",
+        },
+        {
+          title: "रुग्णाला काय मिळते",
+          body: "शारीरिक वेदना कमी होणे, श्वास घेण्यास मदत, झोप चांगली लागणे आणि मानसिक-सामाजिक आधार.",
+        },
+        {
+          title: "कोणासाठी",
+          body: "कर्करोग, हृदयविकार, किडनीचे आजार, पॅरालिसिस, कोमा किंवा इतर गंभीर व जुनाट आजार असलेल्या रुग्णांसाठी.",
+        },
+        {
+          title: "आमचा फोकस",
+          body: "रुग्णाच्या शारीरिक, मानसिक, भावनिक आणि आत्मिक गरजा पूर्ण करून जीवनाचा दर्जा सुधारणे.",
+        },
+      ],
+      ctaTitle: "पहिले पाऊल उचलण्यास तयार आहात?",
+      ctaBody: "स्वतःसाठी असो किंवा आपल्या प्रिय व्यक्तीसाठी — आमची टीम कोणत्याही न्यायनिवाड्याशिवाय, काळजीने मार्गदर्शन करण्यास सज्ज आहे.",
+      ctaButton: "आमच्याशी बोला",
+    },
+    facilities: [
+      { title: "सुसज्ज इमारत", desc: "पुनर्वसनासाठी खास तयार केलेली शांत जागा." },
+      { title: "मध्यवर्ती भागात केंद्र", desc: "लातूर शहरातून कुठूनही सहज पोहोचता येईल असे स्थान." },
+      { title: "प्रभावी उपचार", desc: "वैद्यकीय मार्गदर्शनाखाली सुनियोजित उपचार पद्धती." },
+      { title: "योग्य मार्गदर्शन", desc: "रुग्ण व कुटुंबीयांना टप्प्याटप्प्याने मार्गदर्शन." },
+      { title: "समुपदेशन", desc: "मुक्कामादरम्यान वैयक्तिक व कौटुंबिक समुपदेशन." },
+      { title: "मानसोपचार तज्ज्ञ सल्ला", desc: "मानसोपचार तज्ज्ञांचा नियमित सल्ला." },
+      { title: "पौष्टिक आहार", desc: "दररोज घरगुती पद्धतीचा समतोल आहार." },
+      { title: "स्वच्छ पिण्याचे पाणी", desc: "सदैव उपलब्ध सुरक्षित व स्वच्छ पाणी." },
+      { title: "योग व प्राणायाम", desc: "शरीर व मनासाठी दररोजचा योग व प्राणायाम सराव." },
+      { title: "ग्रंथालय", desc: "मनःशांतीसाठी शांत वाचन कक्ष." },
+      { title: "आरोग्यपूर्ण वातावरण", desc: "स्वच्छ, सहानुभूतीपूर्ण व कौटुंबिक वातावरण." },
+      { title: "सीसीटीव्ही निगराणी", desc: "संपूर्ण इमारत सीसीटीव्हीच्या निगराणीखाली." },
+      { title: "अग्निशमन सुरक्षा", desc: "अग्निशमन यंत्रणा व सुरक्षा व्यवस्था कार्यान्वित." },
+    ],
+    about: {
+      title: "केंद्राविषयी",
+      subtitle: "वैयक्तिक दुःखातून जन्मलेली, समाजासाठी उभारलेली संस्था.",
+      storyTitle: "आमची कहाणी",
+      storyParas: [
+        "कै. अश्विनी आनंद बरगाले बहुउद्देशीय सेवाभावी संस्था, लातूर ही डॉ. आनंद बरगाले यांच्या कैलासवासी पत्नी कै. अश्विनी यांच्या स्मरणार्थ स्थापन करण्यात आली. त्यांचे सप्टेंबर २०२१ मध्ये प्रदीर्घ आजाराने व सुमारे तीन वर्षे कोमामध्ये राहिल्यानंतर निधन झाले.",
+        "त्यांच्या आजारपणात कुटुंबाला घरी योग्य नर्सिंग व उपशामक काळजी मिळवण्यासाठी येणारा खर्च व अडचणी प्रत्यक्ष अनुभवायला मिळाल्या — आणि हे लक्षात आले की बहुतांश कुटुंबांना अशी काळजी परवडणे शक्य नसते.",
+        "हीच सामाजिक जाणीव ठेवून, गरीब व गरजू रुग्णांना व त्यांच्या कुटुंबांना पॅलिएटिव्ह केअर व व्यसनमुक्ती उपचारांच्या माध्यमातून दिलासा देण्याच्या उद्देशाने ही संस्था स्थापन करण्यात आली.",
+      ],
+      visionTitle: "आमचे ध्येय",
+      visionBody:
+        "शिक्षण, आरोग्य व सामाजिक समृद्धीच्या माध्यमातून वंचित घटकांना मुख्य प्रवाहात आणणारा सक्षम, स्वावलंबी समाज घडवणे — आणि प्रत्येक जिल्ह्यात सहानुभूतीपूर्ण पॅलिएटिव्ह केअर उपलब्ध करून देणे.",
+      orgTitle: "संस्थेविषयी",
+      orgBody:
+        "कै. अश्विनी आनंद बरगाले बहुउद्देशीय सेवाभावी संस्था ही लातूर परिसरात आरोग्य, सामाजिक व शैक्षणिक क्षेत्रात कार्यरत असलेली नोंदणीकृत सार्वजनिक विश्वस्त संस्था आहे (नोंदणी क्र. Latur/0000179/2026).",
+      capacityTitle: "आजची आमची सुविधा",
+      capacityItems: [
+        { label: "रुग्णालय खाटा", value: "१०" },
+        { label: "व्यसनमुक्ती व पॅलिएटिव्ह खाटा", value: "४८" },
+        { label: "स्थान", value: "विशाल नगर, लातूर" },
+      ],
+      boardTitle: "कार्यकारी मंडळ",
+      boardMembers: [
+        { role: "अध्यक्ष", name: "सौ. माधवी आनंद बरगाले" },
+        { role: "उपाध्यक्ष", name: "श्री. शेखर म. कोरे" },
+        { role: "सचिव", name: "डॉ. आनंद न. बरगाले" },
+        { role: "कोषाध्यक्ष", name: "श्रीमती पुष्पा न. बरगाले" },
+        { role: "सहसचिव", name: "श्री. हेमंत लोहारे" },
+        { role: "सदस्य", name: "डॉ. संकल्प सं. बरगाले" },
+        { role: "सदस्य", name: "श्री. बाळू कांबळे" },
+      ],
+    },
+    servicesPage: {
+      title: "आमच्या सेवा",
+      subtitle: "एकाच छताखाली कार्यरत दोन समर्पित विभाग — व्यसनमुक्ती व उपशामक काळजी.",
+      deaddictionTitle: "व्यसनमुक्ती उपचार",
+      deaddictionItems: [
+        { title: "मद्यव्यसन", desc: "मद्यव्यसनासाठी सुनियोजित डिटॉक्स व पुनर्वसन कार्यक्रम." },
+        { title: "अमली पदार्थ व्यसन", desc: "व्यसनांसाठी वैद्यकीय डिटॉक्सिफिकेशन व पुनर्वसन." },
+        { title: "समुपदेशन", desc: "प्रेरणा व सवयी पुन्हा घडवण्यासाठी वैयक्तिक व सामूहिक समुपदेशन." },
+        { title: "मानसोपचार सहाय्य", desc: "सहविकारांसाठी सातत्यपूर्ण मानसोपचार काळजी." },
+        { title: "कौटुंबिक उपचार", desc: "कुटुंबाला एकत्रितपणे बरे होण्यास व आधार देण्यास मदत." },
+        { title: "योग", desc: "शारीरिक शक्ती पुन्हा मिळवण्यासाठी दैनंदिन योग सत्रे." },
+        { title: "मेडिटेशन", desc: "शांतता, एकाग्रता व भावनिक संतुलनासाठी ध्यानसाधना." },
+      ],
+      palliativeTitle: "उपशामक काळजी (पॅलिएटिव्ह केअर)",
+      palliativeItems: [
+        { title: "पॅलिएटिव्ह केअर", desc: "गंभीर व जुनाट आजारांसाठी वेदनाशमन व आरामदायी काळजी." },
+        { title: "होम केअर सहाय्य", desc: "रुग्णाच्या स्वतःच्या घरी मार्गदर्शन व सहाय्य पुरवणे." },
+      ],
+    },
+    admission: {
+      title: "प्रवेश प्रक्रिया",
+      subtitle: "पहिल्या फोन कॉलपासून उपचार सुरू होईपर्यंतचा स्पष्ट, कुटुंबस्नेही मार्ग.",
+      steps: [
+        { title: "नातेवाईकांकडून विनंती", desc: "कुटुंबातील सदस्य प्रवेशासाठी आमच्याशी संपर्क साधतात." },
+        { title: "रुग्ण समुपदेशन", desc: "आमचे समुपदेशक रुग्णाशी बोलून परिस्थिती समजून घेतात." },
+        { title: "आवश्यकतेनुसार पिकअप सेवा", desc: "रुग्ण येऊ शकत नसल्यास सुरक्षित पिकअपची व्यवस्था केली जाते." },
+        { title: "प्रवेश फॉर्म", desc: "आवश्यक माहिती प्रवेश फॉर्मवर नोंदवली जाते." },
+        { title: "संमती स्वाक्षरी", desc: "रुग्ण व नातेवाईक संमती पत्रावर स्वाक्षरी करतात." },
+        { title: "साहित्य जमा", desc: "मौल्यवान वस्तू व साहित्य सुरक्षितपणे जमा करून नोंद घेतली जाते." },
+        { title: "उपचार सुरू", desc: "वैद्यकीय व समुपदेशन निगराणीखाली उपचार सुरू होतात." },
+      ],
+    },
+    rules: {
+      title: "नियम व अटी",
+      subtitle: "प्रत्येक रुग्णासाठी केंद्र शांत, सुरक्षित व प्रभावी ठेवणारे स्पष्ट नियम.",
+      items: [
+        { title: "भेटीची वेळ", desc: "नातेवाईक सकाळी १०.०० ते सायं. ५.०० या वेळेत ऑफिसला भेट देऊ शकतात." },
+        { title: "डिस्चार्जची वेळ", desc: "रुग्ण डिस्चार्ज सकाळी १०.०० ते सायं. ५.०० या वेळेतच दिला जातो." },
+        { title: "उशिरा डिस्चार्ज नाही", desc: "रात्री ३ नंतर कोणत्याही परिस्थितीत डिस्चार्ज दिला जाणार नाही." },
+        { title: "अधिकृत डिस्चार्ज", desc: "ज्या नातेवाईकाच्या स्वाक्षरीने रुग्ण भरती झाला, त्याच्याच स्वाक्षरीने डिस्चार्ज दिला जाईल." },
+        { title: "एकावेळी एकच भेट", desc: "एकावेळी एकच नातेवाईक ऑफिसमध्ये येऊ शकतो." },
+        { title: "व्यसन करून येण्यास मनाई", desc: "नातेवाईकांनी कोणतेही व्यसन करून केंद्रावर येऊ नये." },
+        { title: "रात्रीच्या वेळी प्रवेश बंद", desc: "रात्री ६ नंतर इतर व्यक्तींना व नातेवाईकांना केंद्रात येण्यास सक्त मनाई आहे." },
+        { title: "पूर्वसूचनेशिवाय डिस्चार्ज नाही", desc: "पूर्वकल्पनेशिवाय किंवा रात्री ५.३० नंतर डिस्चार्ज केला जाणार नाही." },
+        { title: "कायदेशीर कारवाई", desc: "नियमांचे उल्लंघन केल्यास आरोग्य सेवा संरक्षण कायद्यानुसार कारवाई होईल." },
+        { title: "सुरुवातीचे २१ दिवस", desc: "पहिले २१ दिवस रुग्णांना फोनवर बोलता किंवा समोरासमोर भेटता येणार नाही." },
+      ],
+    },
+    donation: {
+      title: "आमच्या कार्यास सहकार्य करा",
+      subtitle: "आपली देणगी गरजू रुग्णांना सन्मान, उपचार आणि आशा देते.",
+      quote: "\u201cकोणाचे तरी उद्ध्वस्त होणारे घर वाचवण्यासाठी आणि गंभीर आजाराने त्रस्त रुग्णांच्या चेहऱ्यावर दोन क्षणांचे हास्य फुलवण्यासाठी...\u201d",
+      scanTitle: "स्कॅन करून देणगी द्या",
+      scanBody: "GPay, PhonePe, Paytm किंवा BHIM UPI यापैकी कोणतेही अ‍ॅप वापरून त्वरित स्कॅन करा व देणगी द्या.",
+      bankDetailsTitle: "बँक ट्रान्सफर तपशील",
+      bankName: "बँकेचे नाव",
+      accountName: "खातेदाराचे नाव",
+      accountNumber: "खाते क्रमांक",
+      ifsc: "IFSC कोड",
+      upiId: "UPI आयडी",
+      thankYouTitle: "धन्यवाद",
+      thankYouBody:
+        "आपली प्रत्येक लहानशी देणगीसुद्धा गरजू रुग्णांना मोफत व सवलतीच्या दरात उपचार देण्यासाठी थेट वापरली जाते. सर्व देणगीदारांना अधिकृत पावती दिली जाईल.",
+      regTitle: "नोंदणी व कर सवलत माहिती",
+      trustReg: "Trust Reg. No.",
+      darpanId: "NGO Darpan ID",
+      csrReg: "CSR Reg. No.",
+      taxReg: "80G व 12A Reg. No.",
+    },
+    contact: {
+      title: "संपर्क साधा",
+      subtitle: "आम्ही दिवसरात्र आपल्या प्रश्नांची उत्तरे देण्यास उपलब्ध आहोत.",
+      phoneTitle: "फोन",
+      emailTitle: "ईमेल",
+      addressTitle: "पत्ता",
+      formTitle: "आम्हाला संदेश पाठवा",
+      formName: "आपले नाव",
+      formPhone: "फोन नंबर",
+      formMessage: "संदेश",
+      formSubmit: "संदेश पाठवा",
+      mapTitle: "नकाशावर आमचे स्थान पहा",
+    },
+    gallery: {
+      title: "छायाचित्रे",
+      subtitle: "आमचे केंद्र, सुविधा आणि कार्याची झलक.",
+    },
+    footer: {
+      about:
+        "एस.एस. व्यसनमुक्ती आणि उपशामक उपचार केंद्र, लातूर हे कै. अश्विनी आनंद बरगाले बहुउद्देशीय सेवाभावी संस्थेद्वारे चालवले जाते — मराठवाड्यातील आरोग्य व सामाजिक सेवेसाठी समर्पित.",
+      quickLinks: "द्रुत दुवे",
+      getInTouch: "संपर्कात रहा",
+      rights: "सर्व हक्क राखीव.",
+    },
+    notFound: {
+      title: "पृष्ठ सापडले नाही",
+      body: "आपण शोधत असलेले पृष्ठ अस्तित्वात नाही किंवा हलवण्यात आले आहे.",
+      cta: "मुख्यपृष्ठावर परत जा",
+    },
+    loading: "लोड होत आहे...",
+  },
+} as const;
+
+// Widen the literal string types produced by `as const` so both locales
+// (which have different literal text) can share a single Dictionary type.
+type Widen<T> = T extends string
+  ? string
+  : T extends readonly (infer U)[]
+  ? readonly Widen<U>[]
+  : T extends object
+  ? { [K in keyof T]: Widen<T[K]> }
+  : T;
+
+export type Dictionary = Widen<typeof dictionary.en>;
