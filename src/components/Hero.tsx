@@ -5,278 +5,155 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Phone,
-  HeartHandshake,
   ArrowRight,
-  PersonStanding,
-  Flower2,
-  HeartCrack,
-  CircleOff,
-  UserCheck,
-  Users,
-  Star,
+  HeartHandshake,
   BedDouble,
-  HeartPulse,
-  MessagesSquare,
-  ShieldCheck,
-  FileCheck2,
+  Building2,
   Stethoscope,
-  Handshake,
+  Leaf,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
-const struggleIcons = [PersonStanding, Flower2, HeartCrack, CircleOff];
-const hopeIcons = [UserCheck, Flower2, Users, Star];
-const statIcons = [BedDouble, Users, HeartPulse, MessagesSquare];
-const trustIcons = [ShieldCheck, FileCheck2, Stethoscope, Handshake];
+const statIcons = [BedDouble, Building2, Stethoscope, Leaf];
+
+// Fallback text, used only for keys missing from the translations file.
+const defaults = {
+  title: "For a Healthier, Pain-Free and Addiction-Free Society...",
+  highlight: "Your One Step Matters!",
+  subtitle:
+    "We work for De-addiction and Palliative Care — two important and sensitive areas — and appeal to all generous donors to support this noble cause.",
+  ctaPrimary: "Contact Our Team",
+  ctaSecondary: "Know More",
+  imageCaption: "From Struggle to Strength",
+  stats: [
+    { title: "10+", subtitle: "Bedded Hospital", note: "In the heart of Latur" },
+    { title: "48+", subtitle: "Bedded De-addiction & Palliative Care Centre", note: "Full capacity operation" },
+    { title: "Expert", subtitle: "Medical Team", note: "Doctors, counsellors and support staff" },
+    { title: "Holistic Care", subtitle: "", note: "Physical, mental, social and spiritual support" },
+  ],
+  donate: {
+    title: "For a Healthy and Pain-Free Society... Your One Step!",
+    text: "We appeal to generous donors to support our work in De-addiction and Palliative Care, two of the most sensitive and important areas in society.",
+    cta: "Donate Now",
+  },
+};
 
 export default function Hero() {
   const { t } = useLanguage();
-  const h = t.home.heroBanner;
+  const h = { ...defaults, ...(t.home.heroBanner as Partial<typeof defaults>) };
 
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* ================= Photo band ================= */}
-      <div className="relative min-h-[600px] sm:min-h-[640px] lg:min-h-[720px] overflow-hidden">
-        {/* Two mood photos, side by side */}
-        <div className="absolute inset-0 grid grid-cols-2">
-          <motion.div
-            className="relative h-full w-full"
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.4, ease: "easeOut" }}
-          >
-            <motion.div
-              className="absolute inset-0"
-              animate={{ scale: [1, 1.06, 1] }}
-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      {/* ================= Hero banner ================= */}
+      <div className="relative">
+        {/* Right photo (desktop: right half, mobile: below text) */}
+        <div className="absolute inset-y-0 right-0 hidden w-[58%] lg:block">
+          <Image
+            src="/images/hero-hands.jpg"
+            alt={h.imageCaption}
+            fill
+            priority
+            sizes="58vw"
+            className="object-cover object-center"
+          />
+          {/* fade into white on the left so the text stays readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
+        </div>
+
+        <div className="container-content relative z-10 grid items-center lg:min-h-[520px] lg:grid-cols-[1.05fr_1fr]">
+          {/* ---------- Left: text ---------- */}
+          <div className="py-10 sm:py-14 lg:py-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-display text-[2rem] font-extrabold leading-[1.12] text-secondary sm:text-4xl lg:text-[2.7rem]"
             >
-              <Image
-                src="/images/hero-struggle.jpg"
-                alt={h.leftCaption}
-                fill
-                priority
-                sizes="50vw"
-                className="object-cover object-[65%_center] grayscale-[15%]"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />
-          </motion.div>
+              {h.title}
+              <span className="mt-1 block text-[#d62828]">{h.highlight}</span>
+            </motion.h1>
 
-          <motion.div
-            className="relative h-full w-full"
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.4, ease: "easeOut" }}
-          >
-            <motion.div
-              className="absolute inset-0"
-              animate={{ scale: [1, 1.06, 1] }}
-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-            >
-              <Image
-                src="/images/hero-hope.jpg"
-                alt={h.rightCaption}
-                fill
-                priority
-                sizes="50vw"
-                className="object-cover object-[35%_center]"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-l from-white/10 via-white/5 to-transparent" />
-          </motion.div>
-        </div>
-
-        {/* Center blend so the headline always reads clearly */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 62% 85% at 50% 46%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.72) 32%, rgba(255,255,255,0.15) 62%, transparent 78%)",
-          }}
-        />
-
-        {/* Soft base fade so the band sits naturally on white page background */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
-
-        {/* ---------- Left: caption + struggle points ---------- */}
-        <div className="hidden md:flex absolute left-6 lg:left-12 top-20 lg:top-24 flex-col gap-8 z-10">
-          <motion.p
-            initial={{ opacity: 0, x: -14 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="font-display italic text-2xl lg:text-[1.7rem] text-white/95 -rotate-2 [text-shadow:0_2px_10px_rgba(0,0,0,0.35)]"
-          >
-            {h.leftCaption}
-          </motion.p>
-          <ul className="flex flex-col gap-4">
-            {h.strugglePoints.map((label, i) => {
-              const Icon = struggleIcons[i % struggleIcons.length];
-              return (
-                <motion.li
-                  key={label}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 + i * 0.12 }}
-                  className="flex items-center gap-3"
-                >
-                  <motion.span
-                    animate={{ y: [0, -4, 0] }}
-                    transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm ring-1 ring-white/25"
-                  >
-                    <Icon size={16} />
-                  </motion.span>
-                  <span className="text-sm text-white/90 [text-shadow:0_1px_6px_rgba(0,0,0,0.4)]">
-                    {label}
-                  </span>
-                </motion.li>
-              );
-            })}
-          </ul>
-        </div>
-
-        {/* ---------- Right: caption + hope points ---------- */}
-        <div className="hidden md:flex absolute right-6 lg:right-12 top-20 lg:top-24 flex-col items-end gap-8 z-10">
-          <motion.p
-            initial={{ opacity: 0, x: 14 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="font-display italic text-2xl lg:text-[1.7rem] text-secondary rotate-2 text-right [text-shadow:0_2px_10px_rgba(255,255,255,0.6)]"
-          >
-            {h.rightCaption}
-          </motion.p>
-          <ul className="flex flex-col items-end gap-4">
-            {h.hopePoints.map((label, i) => {
-              const Icon = hopeIcons[i % hopeIcons.length];
-              return (
-                <motion.li
-                  key={label}
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 + i * 0.12 }}
-                  className="flex items-center gap-3 flex-row-reverse"
-                >
-                  <motion.span
-                    animate={{ y: [0, -4, 0] }}
-                    transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/90 text-white ring-1 ring-white/40 shadow-md shadow-accent/30"
-                  >
-                    <Icon size={16} />
-                  </motion.span>
-                  <span className="text-sm font-medium text-secondary [text-shadow:0_1px_8px_rgba(255,255,255,0.7)]">
-                    {label}
-                  </span>
-                </motion.li>
-              );
-            })}
-          </ul>
-        </div>
-
-        {/* ---------- Center content ---------- */}
-        <div className="relative z-20 flex h-full flex-col items-center justify-center px-4 pt-24 pb-16 text-center">
-          <motion.p
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-primary-dark"
-          >
-            {h.kicker}
-          </motion.p>
-
-          <h1 className="mt-4 font-display font-extrabold leading-[1.08] text-secondary text-4xl sm:text-5xl lg:text-[3.6rem]">
-            <motion.span
-              initial={{ opacity: 0, y: 18 }}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="block"
+              className="mt-5 max-w-md text-base leading-relaxed text-primary-dark/90 sm:text-lg"
             >
-              {h.titleLine1}
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 18 }}
+              {h.subtitle}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative mt-1 inline-flex items-baseline gap-3"
+              className="mt-7 flex flex-wrap items-center gap-3"
             >
-              <span>{h.titleLine2Prefix}</span>
-              <span className="relative font-serif italic text-gold">
-                {h.titleHighlight}
-                <motion.svg
-                  viewBox="0 0 220 18"
-                  className="absolute -bottom-2 left-0 w-full text-gold"
-                  fill="none"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 0.9, delay: 0.9, ease: "easeInOut" }}
-                >
-                  <motion.path
-                    d="M4 12c40-10 176-10 212 2"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                </motion.svg>
-              </span>
-            </motion.span>
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
-            className="mt-5 max-w-md sm:max-w-lg text-base sm:text-lg text-primary-dark/90"
-          >
-            {h.subtitle}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-3"
-          >
-            <a
-              href="tel:8956550539"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-primary text-white font-semibold shadow-lg shadow-primary/25 hover:bg-primary-dark transition-colors"
-            >
-              <Phone size={17} />
-              {h.ctaPrimary}
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <Link
-              href="/donation"
-              className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gold text-white font-semibold shadow-lg shadow-gold/30 hover:brightness-95 transition-all"
-            >
-              <span className="absolute inset-0 rounded-full ring-2 ring-gold/40 animate-ping [animation-duration:2.4s]" />
-              <HeartHandshake size={17} className="relative" />
-              <span className="relative">{h.ctaSecondary}</span>
-              <ArrowRight size={16} className="relative transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
+              <a
+                href="tel:8956550539"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-dark"
+              >
+                <Phone size={17} />
+                {h.ctaPrimary}
+              </a>
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-2 rounded-full border border-primary/60 bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary-light"
+              >
+                {h.ctaSecondary}
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          </div>
         </div>
+
+        {/* Mobile / tablet photo */}
+        <div className="relative h-64 sm:h-80 lg:hidden">
+          <Image
+            src="/images/hero-hands.jpg"
+            alt={h.imageCaption}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
+        </div>
+
+        {/* Script caption on the photo */}
+        <motion.p
+          initial={{ opacity: 0, rotate: 0 }}
+          animate={{ opacity: 1, rotate: -6 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="absolute bottom-4 right-4 z-20 max-w-[11rem] text-right font-display text-xl italic leading-tight text-secondary [text-shadow:0_2px_8px_rgba(255,255,255,0.9)] sm:text-2xl lg:bottom-auto lg:right-10 lg:top-12 lg:max-w-[14rem] lg:text-3xl"
+        >
+          {h.imageCaption}
+        </motion.p>
       </div>
 
-      {/* ================= Floating stat card ================= */}
-      <div className="container-content relative z-30 -mt-14 sm:-mt-16 lg:-mt-[4.5rem]">
+      {/* ================= Stat strip ================= */}
+      <div className="container-content relative z-20 lg:-mt-6">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-          className="card-surface rounded-[2rem] px-5 py-6 sm:px-8 sm:py-7 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 sm:divide-x sm:divide-primary/10"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="card-surface grid grid-cols-2 gap-x-4 gap-y-6 rounded-3xl px-5 py-6 sm:px-8 lg:grid-cols-4 lg:divide-x lg:divide-primary/10"
         >
-          {h.statCards.map((item, i) => {
+          {h.stats.map((item, i) => {
             const Icon = statIcons[i % statIcons.length];
             return (
-              <div key={item.title} className={`flex items-start gap-3 ${i > 0 ? "sm:pl-4 lg:pl-6" : ""}`}>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
-                  <Icon size={19} />
+              <div key={item.title} className={`flex items-start gap-3 ${i > 0 ? "lg:pl-6" : ""}`}>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
+                  <Icon size={20} />
                 </span>
                 <div>
-                  <p className="font-display font-semibold text-secondary text-[13px] sm:text-sm leading-snug">
+                  <p className="font-display text-sm font-bold leading-snug text-secondary">
                     {item.title}
                   </p>
-                  <p className="text-xs text-ink-soft mt-0.5">{item.subtitle}</p>
+                  {item.subtitle && (
+                    <p className="mt-0.5 text-xs font-semibold text-primary">{item.subtitle}</p>
+                  )}
+                  <p className="mt-0.5 text-xs text-ink-soft">{item.note}</p>
                 </div>
               </div>
             );
@@ -284,32 +161,26 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ================= Trust row ================= */}
-      <div className="container-content relative z-10 pt-10 pb-14 sm:pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 lg:divide-x lg:divide-primary/10"
-        >
-          {h.trustRow.map((item, i) => {
-            const Icon = trustIcons[i % trustIcons.length];
-            return (
-              <div key={item.title} className={`flex items-start gap-3 ${i > 0 ? "lg:pl-6" : ""}`}>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary/5 text-secondary">
-                  <Icon size={17} />
-                </span>
-                <div>
-                  <p className="font-display font-semibold text-secondary text-[13px] sm:text-sm leading-snug">
-                    {item.title}
-                  </p>
-                  <p className="text-xs text-ink-soft mt-0.5">{item.subtitle}</p>
-                </div>
-              </div>
-            );
-          })}
-        </motion.div>
+      {/* ================= Donate banner ================= */}
+      <div className="container-content pb-12 pt-8">
+        <div className="flex flex-col gap-4 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+          <div className="flex items-start gap-3">
+            <HeartHandshake className="mt-1 shrink-0 text-gold" size={30} />
+            <div>
+              <p className="font-display text-base font-bold text-secondary sm:text-lg">
+                {h.donate.title}
+              </p>
+              <p className="text-sm text-[#b4231f]">{h.donate.text}</p>
+            </div>
+          </div>
+          <Link
+            href="/donation"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 font-semibold text-white shadow-md shadow-gold/30 transition-all hover:brightness-95"
+          >
+            {h.donate.cta}
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </section>
   );
