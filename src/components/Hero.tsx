@@ -17,6 +17,10 @@ import { openDonateModal } from "@/components/DonateModal";
 
 const statIcons = [BedDouble, Building2, Stethoscope, Leaf];
 
+// One shared wrapper for every section of the hero so left/right edges line up.
+// To make the navbar line up with it too, use this same class string there.
+const wrap = "mx-auto w-full max-w-[1480px] px-5 sm:px-8 lg:px-12";
+
 // Fallback text, used only for keys missing from the translations file.
 const defaults = {
   title: "For a Healthier, Pain-Free and Addiction-Free Society...",
@@ -47,39 +51,40 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-white">
       {/* ================= Hero banner ================= */}
       <div className="relative">
-        {/* Right photo (desktop: right half, mobile: below text) */}
-        <div className="absolute inset-y-0 right-0 hidden w-[58%] lg:block">
+        {/* Right photo (desktop: right side, mobile: below text) */}
+        <div className="absolute inset-y-0 right-0 hidden w-[62%] lg:block">
           <Image
             src="/images/hero-hands.jpg"
             alt={h.imageCaption}
             fill
             priority
-            sizes="58vw"
-            className="object-cover object-center"
+            sizes="62vw"
+            className="object-cover object-[65%_center]"
           />
-          {/* fade into white on the left so the text stays readable */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white" />
+          {/* soft fade into white on the left so the headline stays readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white from-0% via-white/75 via-30% to-transparent to-75%" />
+          {/* fade out at the bottom so the stat strip sits cleanly */}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-white" />
         </div>
 
-        <div className="container-content relative z-10 grid items-center lg:min-h-[520px] lg:grid-cols-[1.05fr_1fr]">
+        <div className={`${wrap} relative z-10 grid items-center lg:min-h-[540px] lg:grid-cols-[1.3fr_1fr]`}>
           {/* ---------- Left: text ---------- */}
-          <div className="py-10 sm:py-14 lg:py-16">
+          <div className="py-10 sm:py-14 lg:py-20 lg:pb-24">
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="font-display text-[2rem] font-extrabold leading-[1.12] text-secondary sm:text-4xl lg:text-[2.7rem]"
+              className="font-display text-balance text-[2rem] font-extrabold leading-[1.22] tracking-tight text-secondary sm:text-[2.5rem] lg:text-[2.75rem] xl:text-[3.05rem]"
             >
               {h.title}
-              <span className="mt-1 block text-[#d62828]">{h.highlight}</span>
+              <span className="mt-3 block text-[#d62828]">{h.highlight}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="mt-5 max-w-md text-base leading-relaxed text-primary-dark/90 sm:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-primary-dark/90 sm:text-lg"
             >
               {h.subtitle}
             </motion.p>
@@ -88,18 +93,18 @@ export default function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-7 flex flex-wrap items-center gap-3"
+              className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
             >
               <a
                 href="tel:8956550539"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-dark"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary-dark"
               >
                 <Phone size={17} />
                 {h.ctaPrimary}
               </a>
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 rounded-full border border-primary/60 bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary-light"
+                className="group inline-flex items-center gap-2 rounded-full border border-primary/60 bg-white/90 px-7 py-3.5 font-semibold text-primary backdrop-blur transition-colors hover:bg-primary-light"
               >
                 {h.ctaSecondary}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -126,35 +131,40 @@ export default function Hero() {
           initial={{ opacity: 0, rotate: 0 }}
           animate={{ opacity: 1, rotate: -6 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="absolute bottom-4 right-4 z-20 max-w-[11rem] text-right font-display text-xl italic leading-tight text-secondary [text-shadow:0_2px_8px_rgba(255,255,255,0.9)] sm:text-2xl lg:bottom-auto lg:right-10 lg:top-12 lg:max-w-[14rem] lg:text-3xl"
+          className="absolute bottom-4 right-4 z-20 max-w-[11rem] text-right font-display text-xl italic leading-tight text-secondary [text-shadow:0_2px_8px_rgba(255,255,255,0.9)] sm:text-2xl lg:bottom-auto lg:right-12 lg:top-10 lg:max-w-[14rem] lg:text-3xl"
         >
           {h.imageCaption}
         </motion.p>
       </div>
 
       {/* ================= Stat strip ================= */}
-      <div className="container-content relative z-20 lg:-mt-6">
+      <div className={`${wrap} relative z-20 lg:-mt-10`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="card-surface grid grid-cols-2 gap-x-4 gap-y-6 rounded-3xl px-5 py-6 sm:px-8 lg:grid-cols-4 lg:divide-x lg:divide-primary/10"
+          className="card-surface grid grid-cols-1 gap-y-6 rounded-3xl px-5 py-6 sm:grid-cols-2 sm:gap-x-6 sm:px-8 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-primary/10 lg:py-7"
         >
           {h.stats.map((item, i) => {
             const Icon = statIcons[i % statIcons.length];
             return (
-              <div key={item.title} className={`flex items-start gap-3 ${i > 0 ? "lg:pl-6" : ""}`}>
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
-                  <Icon size={20} />
+              <div
+                key={item.title}
+                className={`flex items-start gap-3.5 ${i > 0 ? "lg:pl-8" : ""} ${i < h.stats.length - 1 ? "lg:pr-6" : ""}`}
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
+                  <Icon size={22} />
                 </span>
-                <div>
-                  <p className="font-display text-sm font-bold leading-snug text-secondary">
+                <div className="min-w-0">
+                  <p className="font-display text-lg font-extrabold leading-tight text-secondary">
                     {item.title}
                   </p>
                   {item.subtitle && (
-                    <p className="mt-0.5 text-xs font-semibold text-primary">{item.subtitle}</p>
+                    <p className="mt-1 text-[13px] font-semibold leading-snug text-primary">
+                      {item.subtitle}
+                    </p>
                   )}
-                  <p className="mt-0.5 text-xs text-ink-soft">{item.note}</p>
+                  <p className="mt-1 text-xs leading-snug text-ink-soft">{item.note}</p>
                 </div>
               </div>
             );
@@ -163,21 +173,24 @@ export default function Hero() {
       </div>
 
       {/* ================= Donate banner ================= */}
-      <div className="container-content pb-12 pt-8">
-        <div className="flex flex-col gap-4 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
-          <div className="flex items-start gap-3">
-            <HeartHandshake className="mt-1 shrink-0 text-gold" size={30} />
+      {/* extra bottom padding keeps the floating Donate/Call buttons off the banner */}
+      <div className={`${wrap} pb-20 pt-8 sm:pb-24`}>
+        <div className="flex flex-col gap-5 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+              <HeartHandshake className="text-gold" size={26} />
+            </span>
             <div>
-              <p className="font-display text-base font-bold text-secondary sm:text-lg">
+              <p className="font-display text-base font-bold leading-snug text-secondary sm:text-lg">
                 {h.donate.title}
               </p>
-              <p className="text-sm text-[#b4231f]">{h.donate.text}</p>
+              <p className="mt-1 max-w-3xl text-sm leading-relaxed text-[#b4231f]">{h.donate.text}</p>
             </div>
           </div>
           <button
             type="button"
             onClick={openDonateModal}
-            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 font-semibold text-white shadow-md shadow-gold/30 transition-all hover:brightness-95"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-semibold text-white shadow-md shadow-gold/30 transition-all hover:brightness-95"
           >
             {h.donate.cta}
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
