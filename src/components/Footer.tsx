@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { Phone, Mail, MapPin, Heart } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { siteInfo } from "@/lib/dictionary";
+import { openDonateModal } from "@/components/DonateModal";
 
 /* ---------- Social links ----------
    Paste your real page URLs. Icons with an empty href are hidden. */
@@ -172,13 +173,14 @@ export default function Footer() {
             </ul>
           )}
 
-          <Link
-            href="/donation"
+          <button
+            type="button"
+            onClick={openDonateModal}
             className={`${socials.length > 0 ? "mt-6" : "mt-5"} inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:brightness-110 hover:shadow-xl`}
           >
             <Heart size={16} />
             {t.nav.donateNow}
-          </Link>
+          </button>
         </div>
       </div>
 

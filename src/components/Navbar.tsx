@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, Languages } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { openDonateModal } from "@/components/DonateModal";
 
 export default function Navbar() {
   const { t, locale, toggleLocale } = useLanguage();
@@ -231,8 +232,9 @@ export default function Navbar() {
               </span>
             </a>
 
-            <Link
-              href="/donation"
+            <button
+              type="button"
+              onClick={openDonateModal}
               className="
                 flex
                 h-10
@@ -249,7 +251,7 @@ export default function Navbar() {
               "
             >
               {locale === "mr" ? "देणगी" : "Donate"}
-            </Link>
+            </button>
           </div>
 
           {/* ================= MOBILE MENU BUTTON ================= */}
@@ -357,8 +359,12 @@ export default function Navbar() {
                   {locale === "mr" ? "कॉल करा" : "Call Now"}
                 </a>
 
-                <Link
-                  href="/donation"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    openDonateModal();
+                  }}
                   className="
                     flex
                     items-center
@@ -373,7 +379,7 @@ export default function Navbar() {
                   "
                 >
                   {locale === "mr" ? "देणगी द्या" : "Donate Now"}
-                </Link>
+                </button>
               </div>
             </div>
           </nav>
