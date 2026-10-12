@@ -4,31 +4,13 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Clock, ClipboardList, ShieldCheck, Info } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { rulesEn, ruleGroups, rulesExtraEn, type Rule, type RulesExtra } from "./rulesData";
+import { ruleGroups, rulesExtraEn, type Rule, type RulesExtra } from "./rulesData";
 
 const groupIcons = { visiting: Clock, discharge: ClipboardList, communication: ShieldCheck } as const;
 const groupBg = ["bg-white", "bg-primary-light/40", "bg-white"];
 
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
-
-/**
- * Uses the existing translated rules when they have the expected shape
- * (ten items, each with a title and a description), otherwise the English data.
- * Written loosely because the translation key name could not be inspected.
- */
-function pickRules(t: unknown): { rules: Rule[]; title?: string } {
-  const root = t as Record<string, unknown>;
-  const src = (root.rules ?? root.rulesPage) as { title?: unknown; items?: unknown } | undefined;
-  const items = Array.isArray(src?.items) ? (src!.items as Record<string, unknown>[]) : [];
-  const textOf = (i: Record<string, unknown>) =>
-    [i.desc, i.text, i.description].find((v) => typeof v === "string") as string | undefined;
-  const ok = items.length === rulesEn.length && items.every((i) => typeof i.title === "string" && textOf(i));
-  return {
-    rules: ok ? items.map((i, k) => ({ n: k + 1, title: i.title as string, desc: textOf(i) as string })) : rulesEn,
-    title: typeof src?.title === "string" ? src.title : undefined,
-  };
-}
 
 /** Bolds clock times (e.g. 10:00 AM) so hours are easy to scan. Text is otherwise unchanged. */
 function emphasise(text: string) {
@@ -81,8 +63,10 @@ function Reveal({ children, className = "" }: { children: ReactNode; className?:
 
 export default function RulesContent() {
   const { t } = useLanguage();
-  const x: RulesExtra = ((t as unknown as { rules?: { extra?: RulesExtra } }).rules?.extra) ?? rulesExtraEn;
-  const { rules, title } = pickRules(t);
+  const x: RulesExtra = (t.rules as { extra?: RulesExtra }).extra ?? rulesExtraEn;
+  const title = t.rules.title;
+  // Rule numbers come from the order of t.rules.items, as in the old RulesSection.
+  const rules: Rule[] = t.rules.items.map((r, i) => ({ n: i + 1, title: r.title, desc: r.desc }));
   const byNumber = (n: number) => rules.find((r) => r.n === n)!;
 
   return (
@@ -92,7 +76,7 @@ export default function RulesContent() {
         <div className="container-content py-12 md:py-16">
           <div className="border-l-2 border-primary pl-5 md:pl-7">
             <p className="text-sm font-semibold tracking-wide text-primary-light">{x.hero.eyebrow}</p>
-            <h1 className="mt-3 font-display text-3xl font-bold leading-tight md:text-5xl">{title ?? x.hero.title}</h1>
+            <h1 className="mt-3 font-display text-3xl font-bold leading-tight md:text-5xl">{title}</h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">{x.hero.text}</p>
           </div>
         </div>
