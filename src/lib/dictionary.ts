@@ -1045,6 +1045,50 @@ export const dictionary = {
 
       ],
 
+      testimonialsEyebrow: "रुग्णांचे अभिप्राय",
+
+      testimonialsTitle: "कुटुंबीय काय म्हणतात",
+
+      testimonialsSubtitle: "ज्यांनी आमच्यावर विश्वास ठेवला, त्यांचे प्रत्यक्ष अनुभव.",
+
+      testimonialsRatingLabel: "५.० · ३ Google रिव्ह्यू",
+
+      testimonialsLinkLabel: "Google वरील सर्व रिव्ह्यू पहा",
+
+      testimonials: [
+
+        {
+
+          quote: "कानाचा त्रास असेल तर मी या रुग्णालयाचे नाव मोठ्याने सांगेन — परवडणारे आणि आजवरची सर्वोत्तम सेवा.",
+
+          name: "Sammed Magdum",
+
+          source: "Google रिव्ह्यू · बरगाले हॉस्पिटल",
+
+        },
+
+        {
+
+          quote: "लग्नाच्या 12 वर्षानंतर आणि फक्त 4 महिन्याच्या उपचारामध्ये आम्हाला जुळे बाळ राहिले आहे धन्यवाद सर",
+
+          name: "Vishvajit Patil",
+
+          source: "Google रिव्ह्यू · बरगाले हॉस्पिटल",
+
+        },
+
+        {
+
+          quote: "उत्तम बालरुग्णालय.",
+
+          name: "Rohit Male",
+
+          source: "Google रिव्ह्यू · बरगाले हॉस्पिटल",
+
+        },
+
+      ],
+
       palliativeTitle: "उपशामक काळजी (पॅलिएटिव्ह केअर)",
 
       palliativeItems: [
