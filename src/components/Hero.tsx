@@ -13,6 +13,7 @@ import {
   Leaf,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { openDonateModal } from "@/components/DonateModal";
 
 const statIcons = [BedDouble, Building2, Stethoscope, Leaf];
 
@@ -173,13 +174,14 @@ export default function Hero() {
               <p className="text-sm text-[#b4231f]">{h.donate.text}</p>
             </div>
           </div>
-          <Link
-            href="/donation"
+          <button
+            type="button"
+            onClick={openDonateModal}
             className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 font-semibold text-white shadow-md shadow-gold/30 transition-all hover:brightness-95"
           >
             {h.donate.cta}
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-          </Link>
+          </button>
         </div>
       </div>
     </section>
