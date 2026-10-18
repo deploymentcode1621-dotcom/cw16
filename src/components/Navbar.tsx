@@ -121,7 +121,7 @@ export default function Navbar() {
           >
             <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full ring-1 ring-primary/20">
               <Image
-                src="/images/logo-ss.jpg"
+                src="/images/logo-bargale.jpg"
                 alt="S.S. De-Addiction Centre"
                 fill
                 priority
