@@ -71,10 +71,10 @@ const defaults: AboutCopy = {
   story: {
     eyebrow: "Our story",
     title: "A legacy of compassion. A mission that continues.",
-    lead: "Our organisation was founded in loving memory of Late Ashwini Anand Bargale, so that families facing addiction or serious illness do not have to face it alone.",
+    lead: "Our organisation was founded in loving memory of Kai Ashwini Anand Bargale, so that families facing addiction or serious illness do not have to face it alone.",
     imageAlt: "Bargale Hospital building",
     timeline: [
-      { label: "September 2021", text: "Late Ashwini passed away after a prolonged illness and about three years in a coma." },
+      { label: "September 2021", text: " Ashwini passed away after a prolonged illness and about three years in a coma." },
       { label: "What the family learned", text: "Proper nursing and palliative care at home was difficult and costly, and out of reach for most families." },
       { label: "The purpose", text: "The organisation was founded in her name to bring relief to poor and needy patients and their families." },
     ],
@@ -322,15 +322,26 @@ export default function AboutContent() {
 
           <Reveal delay={0.1} className="relative">
             <PhotoFrame
-              src="/images/about-hero.jpg"
-              alt={c.hero.imageAlt}
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              priority
-              className="aspect-[4/3] rounded-[2rem] shadow-xl shadow-secondary/10 sm:aspect-[5/4] lg:aspect-[4/5]"
-            />
+  src="/images/ashwini_ji_image.jpeg"
+  alt="Kai Ashwini Anand Bargale"
+  sizes="(min-width: 1024px) 45vw, 100vw"
+  priority
+  position="object-top"
+  className="aspect-[4/3] rounded-[2rem] shadow-xl shadow-secondary/10 sm:aspect-[5/4] lg:aspect-[4/5]"
+/>
+
+<div className="absolute bottom-20 right-5 z-10 rounded-xl border border-white/40 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm sm:right-6">
+  <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+    In Loving Memory
+  </p>
+  <p className="mt-1 font-display text-sm font-bold text-secondary sm:text-base">
+    Kai. Ashwini Bargale Mam
+  </p>
+</div>
+
             <div className="absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-lg ring-1 ring-primary/10 sm:left-6">
               <div className="relative h-14 w-14 shrink-0">
-                <Image src="/images/logo-ss.jpg" alt="" fill sizes="56px" className="object-contain" />
+                <Image src="/images/trust_logo.jpeg" alt="" fill sizes="56px" className="object-contain" />
               </div>
               <p className="max-w-[10rem] text-xs font-semibold leading-snug text-secondary">{t.meta.siteName}</p>
             </div>

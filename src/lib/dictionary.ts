@@ -302,7 +302,7 @@ export const dictionary = {
 
       p1: "Health is the greatest wealth. But when a person falls into the trap of addiction or is fighting a serious, incurable illness (such as cancer or paralysis), not only the individual but the entire family faces emotional, physical and financial challenges.",
 
-      p2: "Late Ashwini Anand Bargale Multipurpose Social Welfare Trust, Latur is working with full commitment in the field of healthcare and social service to address these issues.",
+      p2: "Kai Ashwini Anand Bargale Multipurpose Social Welfare Trust, Latur is working with full commitment in the field of healthcare and social service to address these issues.",
 
       cta: "Know More About Our Trust",
 
@@ -636,7 +636,7 @@ export const dictionary = {
 
       rights: "All rights reserved.",
 
-            orgName: "Late Ashwini Anand Bargale Multipurpose Social Welfare Trust, Latur",
+            orgName: "Kai Ashwini Anand Bargale Multipurpose Social Welfare Trust, Latur",
 
       legacy: "\u201cA Legacy of Humanity, A Commitment to Selfless Service\u201d",
 

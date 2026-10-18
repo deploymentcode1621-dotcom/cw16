@@ -8,6 +8,7 @@ import CTASection from "@/components/CTASection";
 import FacilitySection from "@/components/FacilitySection";
 import ProcessSection from "@/components/ProcessSection";
 import DonationBanner from "@/components/DonationBanner";
+import AshwiniTribute from "@/components/AshwiniTribute";
 
 import TestimonialsSection from "@/components/TestimonialsSection";
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
     <>
       <Hero />
        <AboutTrust />
+       <AshwiniTribute />
       <Services />
       <FacilitySection />
       <ProcessSection />

@@ -121,7 +121,7 @@ export default function Navbar() {
           >
             <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full ring-1 ring-primary/20">
               <Image
-                src="/images/logo-bargale.jpg"
+                src="/images/trust_logo.jpeg"
                 alt="S.S. De-Addiction Centre"
                 fill
                 priority
@@ -129,18 +129,21 @@ export default function Navbar() {
               />
             </div>
 
-            <div className="hidden sm:block leading-tight">
-              <p className="whitespace-nowrap font-display text-[15px] font-bold text-secondary xl:text-base">
-                S.S.{" "}
-                {locale === "mr"
-                  ? "व्यसनमुक्ती केंद्र"
-                  : "De-Addiction Centre"}
-              </p>
+           
+<div className="hidden sm:block leading-tight">
+  <p className="whitespace-nowrap font-display text-[15px] font-bold text-secondary xl:text-base">
+    {locale === "mr"
+      ? "कै. अश्विनी बरगळे ट्रस्ट"
+      : "Kai. Ashwini Bargale Trust"}
+  </p>
 
-              <p className="mt-0.5 text-xs text-ink-soft">
-                {locale === "mr" ? "लातूर" : "Latur"}
-              </p>
-            </div>
+  <p className="mt-1 text-[10px] font-medium leading-snug text-ink-soft sm:text-[11px]">
+    {locale === "mr"
+      ? "एस. एस. व्यसनमुक्ती व पॅलिएटिव्ह केअर सेंटर, लातूर"
+      : "S.S. De-Addiction & Palliative Care Centre, Latur"}
+  </p>
+</div>
+
           </Link>
 
           {/* ================= DESKTOP NAV ================= */}
