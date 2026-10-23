@@ -79,9 +79,15 @@ export default function Footer() {
         {/* Column 1: trust identity */}
         <div className="lg:border-r lg:border-white/15 lg:pr-10">
           <div className="flex items-start gap-3">
-            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-white ring-2 ring-white/40">
-              <Image src="/images/trust_logo.jpeg" alt="Logo" fill className="object-cover" />
-            </div>
+           <div className="relative h-14 w-14 shrink-0">
+  <Image
+    src="/images/trust_logo.jpeg"
+    alt="Kai Ashwini Bargale Trust Logo"
+    fill
+    sizes="56px"
+    className="object-contain"
+  />
+</div>
             <p className="font-display text-base font-bold leading-snug">{f.orgName}</p>
           </div>
 
