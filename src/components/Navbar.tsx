@@ -134,7 +134,7 @@ export default function Navbar() {
 <div className="hidden sm:block leading-tight">
   <p className="whitespace-nowrap font-display text-[15px] font-bold text-secondary xl:text-base">
     {locale === "mr"
-      ? "कै. अश्विनी बरगळे ट्रस्ट"
+      ? "कै. अश्विनी बरगाले ट्रस्ट"
       : "Kai. Ashwini Bargale Trust"}
   </p>
 

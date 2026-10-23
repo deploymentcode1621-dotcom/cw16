@@ -5,16 +5,22 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
+  { src: "/images/trust_logo.jpeg", alt: "Bargale trust logo" },
+ 
+   { src: "/images/logo-bargale.jpg", alt: "Bargale Hospital logo" },
   { src: "/images/hero-banner.jpg", alt: "Bargale Hospital & S.S. Centre signage" },
-  { src: "/images/banner-info.jpg", alt: "Centre information banner" },
+   { src: "/images/banner-info.jpg", alt: "Centre information banner" },
   { src: "/images/gallery-1.jpg", alt: "Facility highlights" },
+   { src: "/images/paper1.jpeg", alt: "Bargale trust in news" },
   { src: "/images/gallery-2.jpg", alt: "Palliative care information" },
-  { src: "/images/gallery-3.jpg", alt: "Centre rules and timings" },
-  { src: "/images/gallery-4.jpg", alt: "Daily routine schedule" },
+    { src: "/images/gallery-3.jpg", alt: "Centre rules and timings" },
+   { src: "/images/gallery-4.jpg", alt: "Daily routine schedule" },
+  { src: "/images/paper2.jpeg", alt: "Bargale trust achievements" },
   { src: "/images/gallery-5.jpg", alt: "Admission procedure" },
   { src: "/images/gallery-6.jpg", alt: "Centre overview and contact" },
-  { src: "/images/logo-bargale.jpg", alt: "Bargale Hospital logo" },
-  { src: "/images/logo-ss.jpg", alt: "S.S. De-Addiction & Palliative Care Centre logo" },
+   { src: "/images/logo-ss.jpg", alt: "S.S. De-Addiction & Palliative Care Centre logo" },
+  
+
 ];
 
 export default function Gallery() {

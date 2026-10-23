@@ -272,7 +272,7 @@ function CountUp({ to, deva = false }: { to: number; deva?: boolean }) {
  * Edit these 7 paths to match the real filenames inside /public.
  */
 const TRUSTEE_PHOTOS = [
-  "/images/trustees/madhavi-bargale.jpg", // President
+  "/images/trustees/madhavi-argale.jpg", // President
   "/images/trustees/shekhar-kore.jpg", // Vice President
   "/images/trustees/anand-bargale.jpg", // Secretary
   "/images/trustees/pushpa-bargale.jpg", // Treasurer
@@ -531,7 +531,7 @@ export default function AboutContent() {
 
           <Reveal delay={0.1} className="space-y-8">
             <PhotoFrame
-              src="/images/about-story.jpg"
+              src="/images/facility-building.jpg"
               alt={c.story.imageAlt}
               sizes="(min-width: 1024px) 40vw, 100vw"
               className="aspect-[4/3] rounded-3xl"
