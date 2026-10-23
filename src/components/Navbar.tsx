@@ -119,15 +119,16 @@ export default function Navbar() {
             href="/"
             className="flex shrink-0 items-center gap-3"
           >
-            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full ring-1 ring-primary/20">
-              <Image
-                src="/images/trust_logo.jpeg"
-                alt="S.S. De-Addiction Centre"
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
+            <div className="relative h-12 w-12 shrink-0">
+  <Image
+    src="/images/trust_logo.jpeg"
+    alt="Kai Ashwini Bargale Trust logo"
+    fill
+    priority
+    sizes="48px"
+    className="object-contain"
+  />
+</div>
 
            
 <div className="hidden sm:block leading-tight">
