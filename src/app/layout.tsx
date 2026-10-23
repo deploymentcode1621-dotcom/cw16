@@ -32,7 +32,7 @@ const siteUrl = "https://ssdpclatur.org";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "S.S. De-Addiction & Palliative Care Centre, Latur | Bargale Hospital",
+    default: "Ashwini Bargale Trust & S.S. De-Addiction & Palliative Care Centre, Latur | Bargale Hospital",
     template: "%s | S.S. De-Addiction & Palliative Care Centre, Latur",
   },
   description:

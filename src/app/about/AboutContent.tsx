@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Sprout,
   Target,
+  UserRound,
   Users,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -34,7 +35,7 @@ type AboutCopy = {
     imageAlt: string;
     timeline: { label: string; text: string }[];
   };
-  identity: { eyebrow: string; title: string; text: string; bargaleCaption: string; ssCaption: string };
+  identity: { eyebrow: string; title: string; text: string; bargaleCaption: string; ssCaption: string; trustCaption?: string };
   purpose: {
     eyebrow: string;
     title: string;
@@ -54,7 +55,7 @@ type AboutCopy = {
     servicesTitle: string;
     services: { title: string; desc: string; cta: string }[];
   };
-  board: { eyebrow: string; title: string };
+  board: { eyebrow: string; title: string; subtitle?: string };
   impact: { eyebrow: string; title: string; text: string; imageAlt: string; points: { title: string; desc: string }[] };
   cta: { title: string; text: string; donate: string; contact: string };
 };
@@ -85,6 +86,7 @@ const defaults: AboutCopy = {
     text: "Bargale Hospital and the S.S. De-Addiction & Palliative Care Centre are run by Kai. Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha, a registered public charitable trust working in healthcare, social and educational fields in and around Latur.",
     bargaleCaption: "Bargale Hospital",
     ssCaption: "S.S. De-Addiction & Palliative Care Centre",
+    trustCaption: "Kai. Ashwini Bargale Trust",
   },
   purpose: {
     eyebrow: "Purpose",
@@ -119,7 +121,11 @@ const defaults: AboutCopy = {
       { title: "Palliative care", desc: "Comfort, pain relief and emotional support for patients with serious illness, and for their families.", cta: "View palliative care" },
     ],
   },
-  board: { eyebrow: "Management", title: "The people behind our mission." },
+  board: {
+    eyebrow: "Management",
+    title: "The People Behind Our Mission",
+    subtitle: "Meet the dedicated leadership guiding our commitment to care, recovery, and dignity.",
+  },
   impact: {
     eyebrow: "Why it matters",
     title: "Every person deserves care, dignity and a chance to recover.",
@@ -259,9 +265,56 @@ function CountUp({ to, deva = false }: { to: number; deva?: boolean }) {
   return <span ref={ref}>{deva ? toDeva(val) : val}</span>;
 }
 
-// Skips the honorific so the avatar shows the first letter of the actual name.
-const HONORIFIC = /^(mrs|mr|ms|dr|sh|smt|shri|सौ|श्रीमती|श्री|डॉ)\.?\s+/i;
-const initialOf = (name: string) => Array.from(name.trim().replace(HONORIFIC, ""))[0] ?? "";
+/**
+ * Trustee photos, in the SAME order as `t.about.boardMembers`
+ * (President first, then the six others as listed on the site).
+ * If a board member in the dictionary already has a `photo` field, that wins.
+ * Edit these 7 paths to match the real filenames inside /public.
+ */
+const TRUSTEE_PHOTOS = [
+  "/images/trustees/madhavi-bargale.jpg", // President
+  "/images/trustees/shekhar-kore.jpg", // Vice President
+  "/images/trustees/anand-bargale.jpg", // Secretary
+  "/images/trustees/pushpa-bargale.jpg", // Treasurer
+  "/images/trustees/hemant-lohare.jpg", // Joint Secretary
+  "/images/trustees/sankalp-bargale.jpg", // Member
+  "/images/trustees/balu-kamble.jpg", // Member
+];
+
+/** Portrait that fills its parent. If the file is missing, shows a neutral silhouette (never initials or a stand-in photo). */
+function TrusteePhoto({
+  src,
+  alt,
+  sizes,
+  priority = false,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  priority?: boolean;
+  className?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-light to-white text-primary/40">
+        <UserRound className="h-1/3 w-1/3" strokeWidth={1.25} aria-hidden />
+      </div>
+    );
+  }
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes={sizes}
+      priority={priority}
+      onError={() => setFailed(true)}
+      className={`object-cover object-top ${className}`}
+    />
+  );
+}
 
 const valueIcons = [HeartHandshake, ShieldCheck, Sprout, Users, HandHeart];
 const impactIcons = [HandHeart, HeartPulse, Users];
@@ -282,7 +335,11 @@ export default function AboutContent() {
     ...((t as unknown as { aboutPage?: Partial<AboutCopy> }).aboutPage ?? {}),
   } as AboutCopy;
 
-  const [president, ...otherMembers] = a.boardMembers;
+  const members = a.boardMembers.map((m, i) => ({
+    ...m,
+    photo: (m as { photo?: string }).photo ?? TRUSTEE_PHOTOS[i] ?? "",
+  }));
+  const [president, ...otherMembers] = members;
 
   const goToMission = () => {
     document.getElementById("mission")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
@@ -292,6 +349,53 @@ export default function AboutContent() {
     <>
       {/* ============ A. Hero ============ */}
       <section className="relative overflow-hidden bg-[#faf7f2]">
+        {/* Hero photo animations (pure CSS) */}
+        <style>{`
+          @keyframes ab-float {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-10px); }
+          }
+          @keyframes ab-spin { to { transform: rotate(360deg); } }
+          @keyframes ab-glow {
+            0%, 100% { opacity: .35; transform: scale(1); }
+            50%      { opacity: .7;  transform: scale(1.12); }
+          }
+          @keyframes ab-ripple {
+            0%   { transform: scale(.9); opacity: .55; }
+            100% { transform: scale(1.35); opacity: 0; }
+          }
+          @keyframes ab-shimmer {
+            0%   { transform: translateX(-120%); }
+            100% { transform: translateX(220%); }
+          }
+          @keyframes ab-twinkle {
+            0%, 100% { opacity: .15; transform: scale(.7); }
+            50%      { opacity: 1;   transform: scale(1.15); }
+          }
+          @keyframes ab-beat {
+            0%, 100% { transform: scale(1); }
+            50%      { transform: scale(1.18); }
+          }
+          @keyframes ab-drift {
+            0%   { transform: translateY(0) translateX(0); opacity: 0; }
+            20%  { opacity: .8; }
+            100% { transform: translateY(-120px) translateX(14px); opacity: 0; }
+          }
+          .ab-float    { animation: ab-float 6s ease-in-out infinite; }
+          .ab-spin     { animation: ab-spin 8s linear infinite; }
+          .ab-glow     { animation: ab-glow 4s ease-in-out infinite; }
+          .ab-ripple   { animation: ab-ripple 3.6s ease-out infinite; }
+          .ab-ripple-2 { animation-delay: 1.8s; }
+          .ab-shimmer  { animation: ab-shimmer 4.5s ease-in-out infinite; }
+          .ab-twinkle  { animation: ab-twinkle 3s ease-in-out infinite; }
+          .ab-beat     { animation: ab-beat 1.8s ease-in-out infinite; }
+          .ab-drift    { animation: ab-drift 7s ease-in infinite; }
+          @media (prefers-reduced-motion: reduce) {
+            .ab-float, .ab-spin, .ab-glow, .ab-ripple, .ab-shimmer,
+            .ab-twinkle, .ab-beat, .ab-drift { animation: none !important; }
+          }
+        `}</style>
+
         <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
         <div className="container-content relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-20">
           <Reveal>
@@ -320,30 +424,84 @@ export default function AboutContent() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative">
-            <PhotoFrame
-  src="/images/ashwini_ji_image.jpeg"
-  alt="Kai Ashwini Anand Bargale"
-  sizes="(min-width: 1024px) 45vw, 100vw"
-  priority
-  position="object-top"
-  className="aspect-[4/3] rounded-[2rem] shadow-xl shadow-secondary/10 sm:aspect-[5/4] lg:aspect-[4/5]"
-/>
+          {/* ---------- Small, animated photo with centered name badge ---------- */}
+          <Reveal delay={0.1} className="flex justify-center">
+            <div className="relative flex w-full max-w-[300px] flex-col items-center sm:max-w-[320px]">
+              {/* Ripple rings */}
+              <span className="ab-ripple pointer-events-none absolute left-1/2 top-[42%] h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/40" />
+              <span className="ab-ripple ab-ripple-2 pointer-events-none absolute left-1/2 top-[42%] h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/40" />
 
-<div className="absolute bottom-20 right-5 z-10 rounded-xl border border-white/40 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm sm:right-6">
-  <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
-    In Loving Memory
-  </p>
-  <p className="mt-1 font-display text-sm font-bold text-secondary sm:text-base">
-    Kai. Ashwini Bargale Mam
-  </p>
-</div>
+              {/* Glow */}
+              <div className="ab-glow pointer-events-none absolute left-1/2 top-[42%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-amber-200 via-teal-200 to-blue-200 blur-3xl" />
 
-            <div className="absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-lg ring-1 ring-primary/10 sm:left-6">
-              <div className="relative h-14 w-14 shrink-0">
-                <Image src="/images/trust_logo.jpeg" alt="" fill sizes="56px" className="object-contain" />
+              {/* Sparkles */}
+              <span className="ab-twinkle absolute -left-3 top-6 text-lg text-amber-500">✦</span>
+              <span className="ab-twinkle absolute -right-2 top-20 text-sm text-teal-600" style={{ animationDelay: "1s" }}>✦</span>
+              <span className="ab-twinkle absolute -left-1 top-[55%] text-xs text-secondary" style={{ animationDelay: "2s" }}>✦</span>
+
+              {/* Rising light particles */}
+              <span className="ab-drift absolute bottom-24 left-6 h-1.5 w-1.5 rounded-full bg-amber-400" style={{ animationDelay: "0s" }} />
+              <span className="ab-drift absolute bottom-20 right-8 h-1 w-1 rounded-full bg-teal-400" style={{ animationDelay: "2.5s" }} />
+              <span className="ab-drift absolute bottom-28 left-1/2 h-1.5 w-1.5 rounded-full bg-blue-300" style={{ animationDelay: "4.5s" }} />
+
+              {/* Photo: rotating gradient border, gently floating */}
+              <div className="ab-float relative w-full">
+                <div className="relative overflow-hidden rounded-[1.75rem] p-[3px] shadow-xl">
+                  <div
+                    className="ab-spin absolute -inset-[60%]"
+                    style={{
+                      background: "conic-gradient(from 0deg, #203f86, #14b8a6, #f59e0b, #203f86)",
+                    }}
+                  />
+                  <div className="relative overflow-hidden rounded-[1.6rem] bg-white">
+                    <PhotoFrame
+                      src="/images/ashwini_ji_image.jpeg"
+                      alt="Kai Ashwini Anand Bargale"
+                      sizes="(max-width: 640px) 300px, 320px"
+                      priority
+                      position="object-top"
+                      className="aspect-[4/5] w-full"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
+                  </div>
+                </div>
+
+                {/* Trust logo, small round badge on the top-right corner */}
+                <div className="absolute -right-3 -top-3 z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white p-1.5 shadow-lg ring-1 ring-primary/10">
+                  <div className="relative h-full w-full">
+                    <Image src="/images/trust_logo.jpeg" alt={t.meta.siteName} fill sizes="64px" className="object-contain" />
+                  </div>
+                </div>
+
+                {/* Name badge: centered, overlapping the bottom of the photo */}
+                <div className="absolute inset-x-0 -bottom-8 z-10 flex justify-center px-3">
+                  <div className="relative w-full overflow-hidden rounded-2xl border border-white/70 bg-white/95 px-4 py-3.5 text-center shadow-xl backdrop-blur">
+                    <span className="ab-shimmer pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-amber-100/70 to-transparent" />
+                    <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-secondary via-teal-500 to-gold" />
+
+                    <p className="relative flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
+                      <span className="h-px w-4 bg-primary/50" />
+                      <span className="ab-beat inline-block text-rose-500">♥</span>
+                      In Loving Memory
+                      <span className="ab-beat inline-block text-rose-500" style={{ animationDelay: ".4s" }}>♥</span>
+                      <span className="h-px w-4 bg-primary/50" />
+                    </p>
+
+                    <p className="relative mt-1.5 font-display text-lg font-extrabold leading-tight text-secondary">
+                      Kai. Ashwini Bargale Mam
+                    </p>
+
+                    <div className="relative mt-2 flex items-center justify-center gap-2">
+                      <span className="h-px w-10 bg-gradient-to-r from-transparent to-amber-400" />
+                      <span className="text-xs text-amber-500">✦</span>
+                      <span className="h-px w-10 bg-gradient-to-l from-transparent to-amber-400" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="max-w-[10rem] text-xs font-semibold leading-snug text-secondary">{t.meta.siteName}</p>
+
+              {/* spacer so the overlapping badge has room */}
+              <div className="h-10" />
             </div>
           </Reveal>
         </div>
@@ -404,14 +562,19 @@ export default function AboutContent() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-5">
               {[
+                {
+                  src: "/images/trust_logo.jpeg",
+                  alt: "Kai. Ashwini Bargale Trust logo",
+                  caption: c.identity.trustCaption ?? defaults.identity.trustCaption ?? "",
+                },
                 { src: "/images/logo-bargale.jpg", alt: "Bargale Hospital logo", caption: c.identity.bargaleCaption },
                 { src: "/images/logo-ss.jpg", alt: "S.S. De-Addiction & Palliative Care Centre logo", caption: c.identity.ssCaption },
               ].map((logo) => (
                 <figure key={logo.src} className="flex flex-col items-center text-center">
-                  <div className="relative h-44 w-44 sm:h-52 sm:w-52">
-                    <Image src={logo.src} alt={logo.alt} fill sizes="208px" className="object-contain" />
+                  <div className="relative h-36 w-36 sm:h-32 sm:w-32 lg:h-40 lg:w-40">
+                    <Image src={logo.src} alt={logo.alt} fill sizes="160px" className="object-contain" />
                   </div>
                   <figcaption className="mt-4 text-sm font-semibold text-secondary">{logo.caption}</figcaption>
                 </figure>
@@ -546,41 +709,69 @@ export default function AboutContent() {
       </section>
 
       {/* ============ F. Management board ============ */}
-      <section className="bg-[#faf7f2] py-16 sm:py-20">
+      <section className="bg-[#faf8f4] py-16 sm:py-20">
         <div className="container-content">
-          <Reveal className="text-center">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               <span className="h-px w-8 bg-gold" />
               {c.board.eyebrow}
               <span className="h-px w-8 bg-gold" />
             </p>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">{c.board.title}</h2>
+            {c.board.subtitle && (
+              <p className="mt-4 leading-relaxed text-ink-soft sm:text-lg">{c.board.subtitle}</p>
+            )}
           </Reveal>
 
+          {/* Featured: President */}
           {president && (
-            <Reveal delay={0.05} className="mx-auto mt-10 max-w-md">
-              <div className="rounded-3xl bg-secondary p-8 text-center text-white shadow-xl shadow-secondary/15">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gold font-display text-3xl font-bold text-white ring-4 ring-white/15">
-                  {initialOf(president.name)}
+            <Reveal delay={0.05} className="mx-auto mt-10 max-w-4xl">
+              <article className="group grid overflow-hidden rounded-3xl bg-secondary shadow-xl shadow-secondary/15 md:grid-cols-[minmax(0,320px)_1fr]">
+                <div className="relative aspect-[4/5] overflow-hidden md:aspect-auto md:min-h-[400px]">
+                  <TrusteePhoto
+                    src={president.photo}
+                    alt={president.name}
+                    sizes="(min-width: 768px) 320px, 100vw"
+                    priority
+                    className="transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent md:hidden" />
                 </div>
-                <p className="mt-5 font-display text-xl font-bold">{president.name}</p>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-gold">{president.role}</p>
-              </div>
+
+                <div className="flex flex-col justify-center p-7 sm:p-10">
+                  <p className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-gold">
+                    <span className="h-px w-8 bg-gold" />
+                    {president.role}
+                  </p>
+                  <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight text-white sm:text-3xl lg:text-[2.1rem]">
+                    {president.name}
+                  </h3>
+                  <span className="mt-5 block h-1 w-14 rounded-full bg-gold" />
+                  <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/75">{t.meta.siteName}</p>
+                </div>
+              </article>
             </Reveal>
           )}
 
-          <div className="mx-auto mt-6 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Other trustees */}
+          <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3 lg:gap-6">
             {otherMembers.map((m, i) => (
               <Reveal key={m.name} delay={0.04 * i}>
-                <div className="flex items-center gap-4 rounded-2xl border border-primary/10 bg-white p-5 transition-colors hover:border-primary/30">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-light font-display text-lg font-bold text-secondary">
-                    {initialOf(m.name)}
+                <article className="group h-full overflow-hidden rounded-2xl border border-primary/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-primary-light">
+                    <TrusteePhoto
+                      src={m.photo}
+                      alt={m.name}
+                      sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 48vw"
+                      className="transition-transform duration-700 group-hover:scale-105"
+                    />
                   </div>
-                  <div className="min-w-0">
-                    <p className="font-display font-semibold leading-snug text-secondary">{m.name}</p>
-                    <p className="mt-0.5 text-sm text-primary-dark">{m.role}</p>
+                  <div className="relative px-3 pb-5 pt-5 text-center sm:px-5">
+                    <span className="absolute left-1/2 top-0 h-[3px] w-10 -translate-x-1/2 rounded-full bg-gold" />
+                    <h3 className="font-display text-[15px] font-bold leading-snug text-secondary sm:text-lg">{m.name}</h3>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">{m.role}</p>
                   </div>
-                </div>
+                </article>
               </Reveal>
             ))}
           </div>
