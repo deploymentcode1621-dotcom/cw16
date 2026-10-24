@@ -670,7 +670,7 @@ export const dictionary = {
       quickLinks: "Quick Links",
       getInTouch: "Get in Touch",
       rights: "All rights reserved.",
-      orgName: "Kai Ashwini Anand Bargale Multipurpose Social Welfare Trust, Latur",
+      orgName: "Kai Ashwini Anand Bargale Trust, Latur",
       legacy: "\u201cA Legacy of Humanity, A Commitment to Selfless Service\u201d",
       shortAbout:
         "Working for de-addiction and palliative care, committed to healthcare and social service in Latur, Maharashtra.",
