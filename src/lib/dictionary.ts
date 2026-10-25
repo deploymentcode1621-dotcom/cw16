@@ -53,6 +53,7 @@ export const dictionary = {
       gallery: "Gallery",
       donation: "Donation",
       contact: "Contact",
+      trustDocuments: "Trust Documents", // NEW
       callNow: "Call Now",
       donateNow: "Donate Now",
     },
@@ -664,6 +665,20 @@ export const dictionary = {
       subtitle: "A glimpse into our centre, our facilities and our work.",
     },
 
+    // NEW
+    trustDocs: {
+      title: "Official Trust Documents",
+      subtitle: "Access important registration records and official documentation of Kai. Ashwini Bargale Trust.",
+      view: "View Document",
+      download: "Download PDF",
+      comingSoon: "Document coming soon",
+      issuedBy: "Issued by",
+      issued: "Issued",
+      transparencyTitle: "Transparency & Accountability",
+      transparencyBody: "The Trust makes relevant official documents available for public reference. For further information, please contact us.",
+      contactUs: "Contact us",
+    },
+
     footer: {
       about:
         "S.S. De-Addiction & Palliative Care Centre, Latur is run by Kai. Ashwini Anand Bargale Bahuuddeshiya Sevabhavi Sanstha — dedicated to healthcare and social service in Marathwada.",
@@ -725,6 +740,7 @@ export const dictionary = {
       gallery: "छायाचित्रे",
       donation: "देणगी",
       contact: "संपर्क",
+      trustDocuments: "ट्रस्ट कागदपत्रे", // NEW
       callNow: "कॉल करा",
       donateNow: "देणगी द्या",
     },
@@ -1333,6 +1349,20 @@ export const dictionary = {
     gallery: {
       title: "छायाचित्रे",
       subtitle: "आमचे केंद्र, सुविधा आणि कार्याची झलक.",
+    },
+
+    // NEW
+    trustDocs: {
+      title: "अधिकृत ट्रस्ट कागदपत्रे",
+      subtitle: "कै. अश्विनी बरगाले ट्रस्टची महत्त्वाची नोंदणी प्रमाणपत्रे व अधिकृत कागदपत्रे येथे पाहता येतील.",
+      view: "कागदपत्र पहा",
+      download: "पीडीएफ डाउनलोड करा",
+      comingSoon: "कागदपत्र लवकरच उपलब्ध",
+      issuedBy: "जारी करणारे",
+      issued: "दिनांक",
+      transparencyTitle: "पारदर्शकता व उत्तरदायित्व",
+      transparencyBody: "संबंधित अधिकृत कागदपत्रे सार्वजनिक संदर्भासाठी उपलब्ध करून देण्याचा ट्रस्टचा प्रयत्न आहे. अधिक माहितीसाठी कृपया आमच्याशी संपर्क साधा.",
+      contactUs: "संपर्क साधा",
     },
 
     footer: {

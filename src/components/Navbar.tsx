@@ -16,163 +16,85 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 8);
-    };
-
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
-
     window.addEventListener("scroll", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  /*
-   * Desktop labels are intentionally shorter
-   * so the navbar stays clean and single-line.
-   *
-   * Mobile can still use the complete translated labels.
-   */
+  // Desktop labels are intentionally shorter so the navbar stays single-line.
   const desktopLinks = [
-    {
-      href: "/",
-      label: t.nav.home,
-    },
-    {
-      href: "/about",
-      label: locale === "mr" ? "आमच्याबद्दल" : "About",
-    },
-    {
-      href: "/services",
-      label: t.nav.services,
-    },
-    {
-      href: "/admission",
-      label: locale === "mr" ? "प्रवेश" : "Admission",
-    },
-    {
-      href: "/rules",
-      label: locale === "mr" ? "नियम" : "Rules",
-    },
-    {
-      href: "/gallery",
-      label: t.nav.gallery,
-    },
-    {
-      href: "/contact",
-      label: t.nav.contact,
-    },
+    { href: "/", label: t.nav.home },
+    { href: "/about", label: locale === "mr" ? "आमच्याबद्दल" : "About" },
+    { href: "/services", label: t.nav.services },
+    { href: "/admission", label: locale === "mr" ? "प्रवेश" : "Admission" },
+    { href: "/rules", label: locale === "mr" ? "नियम" : "Rules" },
+    { href: "/gallery", label: t.nav.gallery },
+    { href: "/trust-documents", label: locale === "mr" ? "कागदपत्रे" : "Documents" }, // NEW
+    { href: "/contact", label: t.nav.contact },
   ];
 
   const mobileLinks = [
-    {
-      href: "/",
-      label: t.nav.home,
-    },
-    {
-      href: "/about",
-      label: t.nav.about,
-    },
-    {
-      href: "/services",
-      label: t.nav.services,
-    },
-    {
-      href: "/admission",
-      label: t.nav.admission,
-    },
-    {
-      href: "/rules",
-      label: t.nav.rules,
-    },
-    {
-      href: "/gallery",
-      label: t.nav.gallery,
-    },
-    {
-      href: "/contact",
-      label: t.nav.contact,
-    },
+    { href: "/", label: t.nav.home },
+    { href: "/about", label: t.nav.about },
+    { href: "/services", label: t.nav.services },
+    { href: "/admission", label: t.nav.admission },
+    { href: "/rules", label: t.nav.rules },
+    { href: "/gallery", label: t.nav.gallery },
+    { href: "/trust-documents", label: t.nav.trustDocuments }, // NEW
+    { href: "/contact", label: t.nav.contact },
   ];
 
   return (
     <header
-      className={`
-        sticky top-0 z-50
-        bg-white/95 backdrop-blur-md
-        border-b border-slate-100
-        transition-all duration-300
-        ${scrolled ? "shadow-md" : ""}
-      `}
+      className={`sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-md transition-all duration-300 ${
+        scrolled ? "shadow-md" : ""
+      }`}
     >
       <div className="container-content">
         <div className="flex h-[82px] items-center justify-between gap-4">
-          {/* ================= LOGO ================= */}
-
-          <Link
-            href="/"
-            className="flex shrink-0 items-center gap-3"
-          >
+          {/* LOGO */}
+          <Link href="/" className="flex shrink-0 items-center gap-3">
             <div className="relative h-12 w-12 shrink-0">
-  <Image
-    src="/images/trust_logo.jpeg"
-    alt="Kai Ashwini Bargale Trust logo"
-    fill
-    priority
-    sizes="48px"
-    className="object-contain"
-  />
-</div>
+              <Image
+                src="/images/trust_logo.jpeg"
+                alt="Kai Ashwini Bargale Trust logo"
+                fill
+                priority
+                sizes="48px"
+                className="object-contain"
+              />
+            </div>
 
-           
-<div className="hidden sm:block leading-tight">
-  <p className="whitespace-nowrap font-display text-[15px] font-bold text-secondary xl:text-base">
-    {locale === "mr"
-      ? "कै. अश्विनी बरगाले ट्रस्ट"
-      : "Kai. Ashwini Bargale Trust"}
-  </p>
-
-  <p className="mt-1 text-[10px] font-medium leading-snug text-ink-soft sm:text-[11px]">
-    {locale === "mr"
-      ? "एस. एस. व्यसनमुक्ती व पॅलिएटिव्ह केअर सेंटर, लातूर"
-      : "S.S. De-Addiction & Palliative Care Centre, Latur"}
-  </p>
-</div>
-
+            <div className="hidden leading-tight sm:block">
+              <p className="whitespace-nowrap font-display text-[15px] font-bold text-secondary xl:text-base">
+                {locale === "mr" ? "कै. अश्विनी बरगाले ट्रस्ट" : "Kai. Ashwini Bargale Trust"}
+              </p>
+              <p className="mt-1 text-[10px] font-medium leading-snug text-ink-soft sm:text-[11px]">
+                {locale === "mr"
+                  ? "एस. एस. व्यसनमुक्ती व पॅलिएटिव्ह केअर सेंटर, लातूर"
+                  : "S.S. De-Addiction & Palliative Care Centre, Latur"}
+              </p>
+            </div>
           </Link>
 
-          {/* ================= DESKTOP NAV ================= */}
-
-          <nav className="hidden xl:flex flex-1 items-center justify-center gap-1">
+          {/* DESKTOP NAV */}
+          <nav className="hidden flex-1 items-center justify-center gap-1 xl:flex">
             {desktopLinks.map((link) => {
               const active = pathname === link.href;
-
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`
-                    whitespace-nowrap
-                    rounded-full
-                    px-3
-                    py-2
-                    text-[13px]
-                    font-medium
-                    transition-all
-                    duration-200
-
-                    ${
-                      active
-                        ? "bg-primary-light text-primary-dark"
-                        : "text-ink-soft hover:bg-primary-light/60 hover:text-primary"
-                    }
-                  `}
+                  className={`whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium transition-all duration-200 ${
+                    active
+                      ? "bg-primary-light text-primary-dark"
+                      : "text-ink-soft hover:bg-primary-light/60 hover:text-primary"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -180,136 +102,64 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* ================= DESKTOP ACTIONS ================= */}
-
-          <div className="hidden xl:flex shrink-0 items-center gap-2">
+          {/* DESKTOP ACTIONS */}
+          <div className="hidden shrink-0 items-center gap-2 xl:flex">
             <button
               type="button"
               onClick={toggleLocale}
               aria-label="Toggle language"
-              className="
-                flex
-                h-10
-                items-center
-                gap-1.5
-                whitespace-nowrap
-                rounded-full
-                border
-                border-primary/20
-                px-3
-                text-[13px]
-                font-medium
-                text-primary
-                transition-colors
-                hover:bg-primary-light
-              "
+              className="flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full border border-primary/20 px-3 text-[13px] font-medium text-primary transition-colors hover:bg-primary-light"
             >
               <Languages size={16} />
-
-              <span>
-                {locale === "mr" ? "EN" : "मराठी"}
-              </span>
+              <span>{locale === "mr" ? "EN" : "मराठी"}</span>
             </button>
 
             <a
               href="tel:8956550539"
-              className="
-                flex
-                h-10
-                items-center
-                gap-1.5
-                whitespace-nowrap
-                rounded-full
-                bg-primary
-                px-4
-                text-[13px]
-                font-semibold
-                text-white
-                transition-colors
-                hover:bg-primary-dark
-              "
+              className="flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 text-[13px] font-semibold text-white transition-colors hover:bg-primary-dark"
             >
               <Phone size={15} />
-
-              <span>
-                {locale === "mr" ? "कॉल करा" : "Call Now"}
-              </span>
+              <span>{locale === "mr" ? "कॉल करा" : "Call Now"}</span>
             </a>
 
             <button
               type="button"
               onClick={openDonateModal}
-              className="
-                flex
-                h-10
-                items-center
-                whitespace-nowrap
-                rounded-full
-                bg-gold
-                px-4
-                text-[13px]
-                font-semibold
-                text-white
-                transition-all
-                hover:brightness-95
-              "
+              className="flex h-10 items-center whitespace-nowrap rounded-full bg-gold px-4 text-[13px] font-semibold text-white transition-all hover:brightness-95"
             >
               {locale === "mr" ? "देणगी" : "Donate"}
             </button>
           </div>
 
-          {/* ================= MOBILE MENU BUTTON ================= */}
-
+          {/* MOBILE MENU BUTTON */}
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-              rounded-full
-              text-secondary
-              transition-colors
-              hover:bg-primary-light
-              xl:hidden
-            "
+            className="flex h-10 w-10 items-center justify-center rounded-full text-secondary transition-colors hover:bg-primary-light xl:hidden"
           >
             {open ? <X size={25} /> : <Menu size={25} />}
           </button>
         </div>
       </div>
 
-      {/* ================= MOBILE MENU ================= */}
-
+      {/* MOBILE MENU */}
       {open && (
         <div className="border-t border-primary/10 bg-white xl:hidden">
           <nav className="container-content py-4">
             <div className="flex flex-col gap-1">
               {mobileLinks.map((link) => {
                 const active = pathname === link.href;
-
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`
-                      rounded-xl
-                      px-4
-                      py-3
-                      text-sm
-                      font-medium
-                      transition-colors
-
-                      ${
-                        active
-                          ? "bg-primary-light text-primary-dark"
-                          : "text-ink-soft hover:bg-primary-light/50 hover:text-primary"
-                      }
-                    `}
+                    className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                      active
+                        ? "bg-primary-light text-primary-dark"
+                        : "text-ink-soft hover:bg-primary-light/50 hover:text-primary"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -322,44 +172,17 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={toggleLocale}
-                  className="
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-full
-                    border
-                    border-primary/20
-                    px-4
-                    py-2.5
-                    text-sm
-                    font-medium
-                    text-primary
-                  "
+                  className="flex items-center justify-center gap-2 rounded-full border border-primary/20 px-4 py-2.5 text-sm font-medium text-primary"
                 >
                   <Languages size={16} />
-
                   {locale === "mr" ? "English" : "मराठी"}
                 </button>
 
                 <a
                   href="tel:8956550539"
-                  className="
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-full
-                    bg-primary
-                    px-4
-                    py-2.5
-                    text-sm
-                    font-semibold
-                    text-white
-                  "
+                  className="flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white"
                 >
                   <Phone size={15} />
-
                   {locale === "mr" ? "कॉल करा" : "Call Now"}
                 </a>
 
@@ -369,18 +192,7 @@ export default function Navbar() {
                     setOpen(false);
                     openDonateModal();
                   }}
-                  className="
-                    flex
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-gold
-                    px-4
-                    py-2.5
-                    text-sm
-                    font-semibold
-                    text-white
-                  "
+                  className="flex items-center justify-center rounded-full bg-gold px-4 py-2.5 text-sm font-semibold text-white"
                 >
                   {locale === "mr" ? "देणगी द्या" : "Donate Now"}
                 </button>
