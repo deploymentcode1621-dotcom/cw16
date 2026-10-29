@@ -325,7 +325,7 @@ const serviceLinks = ["/services#de-addiction", "/services#palliative"];
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function AboutContent() {
+export function AboutContent() {
   const { t } = useLanguage();
   const a = t.about;
   const reduce = useReducedMotion();
