@@ -4,16 +4,21 @@ export type TrustDocIcon =
   | "BadgeCheck" | "ScrollText" | "CreditCard"
   | "FileCheck2" | "HeartHandshake" | "Landmark" | "BarChart3";
 
+export type TrustFile = {
+  /** File name inside public/documents/trust/ */
+  file: string;
+  /** Shown on the card only when a document has more than one file */
+  label?: Bilingual;
+};
+
 export type TrustDocument = {
   id: string;
   icon: TrustDocIcon;
   title: Bilingual;
   description: Bilingual;
-  /** File name inside public/documents/trust/. Leave undefined if not available yet. */
-  file?: string;
-  /** Optional, fill only with real information */
+  files?: TrustFile[];
   issuedBy?: Bilingual;
-  issueDate?: string; // e.g. "2019-04-12"
+  issueDate?: string;
 };
 
 export const trustDocuments: TrustDocument[] = [
@@ -25,7 +30,7 @@ export const trustDocuments: TrustDocument[] = [
       en: "Official certificate of registration of the Trust.",
       mr: "ट्रस्टचे अधिकृत नोंदणी प्रमाणपत्र.",
     },
-    file: "trust-registration-certificate.pdf", // remove this line if you don't have it yet
+    files: [{ file: "trust-registration-certificate.pdf" }],
   },
   {
     id: "deed",
@@ -35,7 +40,7 @@ export const trustDocuments: TrustDocument[] = [
       en: "The founding document describing the Trust's aims and governance.",
       mr: "ट्रस्टची उद्दिष्टे व कार्यपद्धती नमूद करणारे मूळ दस्तऐवज.",
     },
-    file: "trust-deed.pdf",
+    // files: [{ file: "trust-deed.pdf" }],  // add once you confirm which PDF is the deed
   },
   {
     id: "pan",
@@ -45,7 +50,7 @@ export const trustDocuments: TrustDocument[] = [
       en: "Permanent Account Number issued to the Trust.",
       mr: "ट्रस्टला देण्यात आलेला कायमस्वरूपी खाते क्रमांक.",
     },
-    file: "trust-pan-card.pdf",
+    files: [{ file: "trust-pan-card.pdf" }],
   },
   {
     id: "12a",
@@ -55,7 +60,7 @@ export const trustDocuments: TrustDocument[] = [
       en: "Income tax registration certificate under Section 12A.",
       mr: "कलम १२ए अंतर्गत आयकर नोंदणी प्रमाणपत्र.",
     },
-    // file: "12a-certificate.pdf",   // add when available
+    files: [{ file: "12a-certificate.pdf" }],
   },
   {
     id: "80g",
@@ -65,20 +70,21 @@ export const trustDocuments: TrustDocument[] = [
       en: "Income tax registration certificate under Section 80G.",
       mr: "कलम ८०जी अंतर्गत आयकर नोंदणी प्रमाणपत्र.",
     },
-    // file: "80g-certificate.pdf",
+    files: [{ file: "80g-certificate.pdf" }],
   },
   {
     id: "other",
     icon: "Landmark",
-    title: {
-      en: "Other Government Registrations",
-      mr: "इतर शासकीय नोंदणी व प्रमाणपत्रे",
-    },
+    title: { en: "Other Government Registrations", mr: "इतर शासकीय नोंदणी व प्रमाणपत्रे" },
     description: {
       en: "Additional government registrations and relevant certificates.",
       mr: "इतर शासकीय नोंदणी व संबंधित प्रमाणपत्रे.",
     },
-    // file: "other-registrations.pdf",
+    files: [
+      { file: "csr-1-registration.pdf", label: { en: "CSR-1 Registration", mr: "सीएसआर-१ नोंदणी" } },
+      { file: "ngo-darpan-certificate.pdf", label: { en: "NGO Darpan Certificate", mr: "एनजीओ दर्पण प्रमाणपत्र" } },
+      { file: "smha-registration.pdf", label: { en: "SMHA Registration", mr: "एसएमएचए नोंदणी" } },
+    ],
   },
   {
     id: "reports",
@@ -88,6 +94,8 @@ export const trustDocuments: TrustDocument[] = [
       en: "Annual reports and audited statements, where available.",
       mr: "उपलब्ध असल्यास वार्षिक अहवाल व लेखापरीक्षण विवरण.",
     },
-    // file: "annual-report-2024-25.pdf",
+    files: [
+      { file: "audit-report-2025-26.pdf", label: { en: "Audit Report 2025–26", mr: "लेखापरीक्षण अहवाल २०२५–२६" } },
+    ],
   },
 ];

@@ -11,14 +11,34 @@ export const metadata: Metadata = {
   alternates: { canonical: "/trust-documents" },
 };
 
-export default function TrustDocumentsPage() {
-  const baseDir = path.join(process.cwd(), "public", "documents", "trust");
+const DOCS_DIR = path.join(process.cwd(), "public", "documents", "trust");
 
-  // A document counts as "available" only if the PDF really exists on disk.
-  const documents = trustDocuments.map((doc) => ({
-    ...doc,
-    available: Boolean(doc.file) && fs.existsSync(path.join(baseDir, doc.file!)),
-  }));
+function fileExists(name: string) {
+  try {
+    return fs.statSync(path.join(DOCS_DIR, name)).isFile();
+  } catch {
+    return false;
+  }
+}
+
+export default function TrustDocumentsPage() {
+  const missing: string[] = [];
+
+  // Keep only files that really exist on disk, so no card ever links to a broken PDF.
+  const documents = trustDocuments.map((doc) => {
+    const files = (doc.files ?? []).filter((f) => {
+      const ok = fileExists(f.file);
+      if (!ok) missing.push(f.file);
+      return ok;
+    });
+    return { ...doc, files, available: files.length > 0 };
+  });
+
+  if (process.env.NODE_ENV === "development" && missing.length > 0) {
+    console.warn(
+      `[trust-documents] Listed in src/lib/trust-documents.ts but not found in public/documents/trust/:\n  - ${missing.join("\n  - ")}`
+    );
+  }
 
   return <TrustDocumentsView documents={documents} />;
 }
