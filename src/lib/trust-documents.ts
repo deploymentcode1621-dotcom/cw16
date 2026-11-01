@@ -40,7 +40,7 @@ export const trustDocuments: TrustDocument[] = [
       en: "The founding document describing the Trust's aims and governance.",
       mr: "ट्रस्टची उद्दिष्टे व कार्यपद्धती नमूद करणारे मूळ दस्तऐवज.",
     },
-    // files: [{ file: "trust-deed.pdf" }],  // add once you confirm which PDF is the deed
+    files: [{ file: "trust-deed.pdf" }],  // add once you confirm which PDF is the deed
   },
   {
     id: "pan",

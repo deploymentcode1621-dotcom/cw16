@@ -192,7 +192,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="container-content flex flex-col items-center justify-between gap-3 py-5 text-xs text-white/60 sm:flex-row">
+        <div className="container-content flex flex-col items-center justify-between gap-3 py-5 text-xs text-white/60 lg:flex-row lg:gap-6">
           <p className="text-center sm:text-left">
             &copy; {new Date().getFullYear()} {siteInfo.org}. {f.rights}
           </p>
@@ -205,7 +205,37 @@ export default function Footer() {
               {f.terms}
             </Link>
           </div>
+          <a
+  href="https://www.codewinxitsolution.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group inline-flex items-center gap-3 rounded-xl border border-gold/50 bg-white/10 px-4 py-2.5 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:bg-white/15 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+>
+  <span
+    aria-hidden="true"
+    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gold text-sm font-bold text-white shadow-md"
+  >
+    &lt;/&gt;
+  </span>
+
+  <span className="text-left">
+    <span className="block text-[10px] font-medium uppercase tracking-widest text-white/65">
+      Designed & Developed by
+    </span>
+    <span className="block text-sm font-bold tracking-wide text-white transition-colors group-hover:text-amber-300">
+      CodeWinx IT Solutions
+    </span>
+  </span>
+
+  <span
+    aria-hidden="true"
+    className="text-lg text-amber-300 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+  >
+    ↗
+  </span>
+</a>
         </div>
+        
       </div>
     </footer>
   );
